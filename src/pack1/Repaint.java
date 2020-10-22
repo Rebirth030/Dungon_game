@@ -6,7 +6,7 @@ public class Repaint extends TimerTask {
 	@Override
 	public void run() {
 		Gui.pnl1.repaint();
-		System.out.println("REPAINT");
+		//System.out.println("REPAINT");
 	}
 }
 

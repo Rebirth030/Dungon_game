@@ -13,9 +13,9 @@ public class Gui {
     public static void createGui() {
 
         jf = new JFrame();
-        //jf.setExtendedState(JFrame.);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jf.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        jf.setUndecorated(false);
+        jf.setUndecorated(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setLocationRelativeTo(null);
         jf.setLayout(null);
