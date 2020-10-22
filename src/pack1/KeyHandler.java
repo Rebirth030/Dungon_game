@@ -15,7 +15,6 @@ public class KeyHandler implements KeyListener {
 
         if (e.getKeyCode() == KeyEvent.VK_W) {
             moveUp = true;
-            moving = true;
         }
         if (e.getKeyCode() == KeyEvent.VK_S) {
             moveDown = true;

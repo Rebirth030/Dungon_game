@@ -10,7 +10,6 @@ public class Game extends TimerTask implements Runnable {
     public static final long maxLoopTime = 1000 / FPS;
     public static PlayerOne player;
     public static boolean running = true;
-    public static Panel paint = new Panel();
 
     @Override
     public void run() {
@@ -23,7 +22,6 @@ public class Game extends TimerTask implements Runnable {
             if (timestamp - oldTimestamp > maxLoopTime) {
                 continue;
             }
-            System.out.println(maxLoopTime + " : " + (timestamp - oldTimestamp));
             if (timestamp - oldTimestamp <= maxLoopTime) {
                 try {
                     Thread.sleep(maxLoopTime - (timestamp - oldTimestamp));
@@ -34,14 +32,6 @@ public class Game extends TimerTask implements Runnable {
         }
     }
 
-   /* public static void Timer() {
-        Timer myTimer = new Timer();
-        myTimer.scheduleAtFixedRate(new Repaint(),0,1000 / FPS);
-    }
-*/
-
-
-
     public static double constrain(double val, double min, double max) {
         return Math.min(Math.max(val, min), max);
     }
@@ -51,12 +41,11 @@ public class Game extends TimerTask implements Runnable {
         Game game = new Game();
         new Thread(game).start();
 
-        Repaint render = new Repaint();
-        new Thread(render).start();
-
         player = new PlayerOne();
 
         Gui.createGui();
+        Repaint render = new Repaint();
+        new Thread(render).start();
         LevelOne.createLevelOne();
         PlayerOne.createPlayerOne();
         new KeyHandler();

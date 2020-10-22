@@ -27,18 +27,18 @@ public class PlayerOne {
         accY = 0;
     }
     public static void update() {
-        velX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0));
-        velY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0));
-        /*velX += accX;
+        accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) /5f;
+        accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) /5f;
+        velX += accX;
         velY += accY;
-        velX *= 0.99;
-        velY *= 0.99;
-        if (velX <= 0.005) {
+        velX *= 0.9;
+        velY *= 0.9;
+        if (Math.abs(velX) <= 0.1) {
             velX = 0;
         }
-        if (velY <= 0.005) {
+        if (Math.abs(velY) <= 0.005) {
             velY = 0;
-        }*/
+        }
         x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, LevelOne.mapWidth);
         y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, LevelOne.mapHeight);
         accX = 0;
