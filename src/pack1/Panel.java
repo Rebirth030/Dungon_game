@@ -12,6 +12,7 @@ public class Panel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         double offX = -Game.player.getX();
         double offY = -Game.player.getY();
@@ -26,6 +27,8 @@ public class Panel extends JPanel {
 
         g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
         Game.player.showPlayer(g);
+
+       // repaint();
 
     }
 }

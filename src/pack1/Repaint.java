@@ -1,24 +1,12 @@
 package pack1;
 
-public class Repaint implements Runnable{
-    @Override
-    public void run() {
-        long timestamp_render;
-        long oldTimestamp_render;
-        while (Game.running) {
-            oldTimestamp_render = System.currentTimeMillis();
-            Game.paint.repaint();
-            timestamp_render = System.currentTimeMillis();
+import java.util.TimerTask;
 
-            if (timestamp_render - oldTimestamp_render <= Game.maxLoopTime) {
-                try {
-                    Thread.sleep(Game.maxLoopTime - (timestamp_render - oldTimestamp_render));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
+public class Repaint extends TimerTask {
+	@Override
+	public void run() {
+		Gui.pnl1.repaint();
+		System.out.println("REPAINT");
+	}
 }
 

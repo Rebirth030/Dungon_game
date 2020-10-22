@@ -1,6 +1,7 @@
 package pack1;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class Gui {
@@ -12,13 +13,14 @@ public class Gui {
     public static void createGui() {
 
         jf = new JFrame();
-        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jf.setUndecorated(true);
+        //jf.setExtendedState(JFrame.);
+        jf.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        jf.setUndecorated(false);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setLocationRelativeTo(null);
         jf.setLayout(null);
         jf.setTitle("Dungon Game");
-        jf.setResizable(false);
+        jf.setResizable(true);
         jf.addKeyListener(new KeyHandler());
         jf.requestFocus();
         jf.setVisible(true);
