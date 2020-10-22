@@ -15,7 +15,7 @@ public class PlayerOne {
     static int playerHeight = 150;
 
     public PlayerOne() {
-        this(0, 0);
+        this(200, 200);
     }
 
     public PlayerOne(double x, double y) {
@@ -43,8 +43,6 @@ public class PlayerOne {
         y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, LevelOne.mapHeight);
         accX = 0;
         accY = 0;
-
-        LevelOne.collisionDetection();
 
     }
 

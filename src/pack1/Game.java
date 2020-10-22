@@ -15,6 +15,7 @@ public class Game implements Runnable {
         while (running) {
             oldTimestamp = System.currentTimeMillis();
             PlayerOne.update();
+            LevelOne.collisionDetection();
             timestamp = System.currentTimeMillis();
             if (timestamp - oldTimestamp > maxLoopTime) {
                 continue;
