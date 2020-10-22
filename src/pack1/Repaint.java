@@ -12,7 +12,7 @@ public class Repaint implements Runnable{
 
             if (timestamp_render - oldTimestamp_render <= Game.maxLoopTime) {
                 try {
-                    Thread.sleep(Game.maxLoopTime -  (timestamp_render - oldTimestamp_render));
+                    Thread.sleep(Game.maxLoopTime - (timestamp_render - oldTimestamp_render));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
