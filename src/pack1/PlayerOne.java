@@ -11,8 +11,8 @@ public class PlayerOne {
     private static double x, y, velX, velY, accX, accY;
     static double speed = 5;
     static BufferedImage Hunter;
-    static int playerWidth = 70;
-    static int playerHeight = 110;
+    static int playerWidth = 100;
+    static int playerHeight = 150;
 
     public PlayerOne() {
         this(0, 0);

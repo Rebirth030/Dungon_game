@@ -1,10 +1,7 @@
 package pack1;
 
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class Game extends TimerTask implements Runnable {
+public class Game implements Runnable {
 
     public static final int FPS = 60;
     public static final long maxLoopTime = 1000 / FPS;
