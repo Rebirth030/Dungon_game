@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false,moving = false;
+    static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, moving = false;
 
     @Override
     public void keyTyped(KeyEvent e) {

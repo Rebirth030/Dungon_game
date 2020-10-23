@@ -9,10 +9,10 @@ import java.io.IOException;
 public class PlayerOne {
 
     private static double x, y, velX, velY, accX, accY;
-    static double speed = 5;
+    static double speed = 3;
     static BufferedImage Hunter;
-    static int playerWidth = 100;
-    static int playerHeight = 150;
+    static int playerWidth = 150;
+    static int playerHeight = 250;
 
     public PlayerOne() {
         this(200, 200);
@@ -26,9 +26,10 @@ public class PlayerOne {
         accX = 0;
         accY = 0;
     }
+//movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
-        accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) /5f;
-        accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) /5f;
+        accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
+        accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
         velX += accX;
         velY += accY;
         velX *= 0.9;
@@ -50,8 +51,10 @@ public class PlayerOne {
         g.drawImage(Hunter, (int) x, (int) y, playerWidth, playerHeight, null);
     }
 
-    public static double getVelX() { return velX; }
-    
+    public static double getVelX() {
+        return velX;
+    }
+
 
     public static double getVelY() {
         return velY;
@@ -75,7 +78,7 @@ public class PlayerOne {
 
     public static void createPlayerOne() {
         try {
-            Hunter = ImageIO.read(new File("rsc/typ.png"));
+            Hunter = ImageIO.read(new File("rsc/player.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
