@@ -70,7 +70,6 @@ public class SpriteAnimation {
                     ImageIO.read(new File("rsc/backStanding3.png")),
                     ImageIO.read(new File("rsc/backStanding4.png"))
             };
-            //Todo:weiter machen hier
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Image Error");

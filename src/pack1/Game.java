@@ -63,5 +63,4 @@ public class Game implements Runnable {
 
 /*TODO:
     -rectangle für collision detection
-    -acceleration (siehe update funktion)
  */
