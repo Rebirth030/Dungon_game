@@ -1,7 +1,9 @@
 package pack1;
 
 
-public class Game implements Runnable {
+import java.util.Timer;
+
+public class Game implements Runnable{
 
     public static final int FPS = 60;
     public static final long maxLoopTime = 1000 / FPS;
@@ -40,15 +42,18 @@ public class Game implements Runnable {
         new Thread(game).start();
 
         player = new PlayerOne();
+        PlayerOne.createPlayerOne();
+
+        SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
 
         Gui.createGui();
         Repaint render = new Repaint();
         new Thread(render).start();
         LevelOne.createLevelOne();
-        PlayerOne.createPlayerOne();
         new KeyHandler();
 
-
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
     }
 
 }

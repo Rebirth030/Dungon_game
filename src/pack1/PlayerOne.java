@@ -28,6 +28,11 @@ public class PlayerOne {
     }
 //movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
+        if(KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
+        if(KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
+        if(KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
+        if(KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
+
         accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
         accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
         velX += accX;
@@ -45,10 +50,25 @@ public class PlayerOne {
         accX = 0;
         accY = 0;
 
+        if(velX == 0 && velY == 0){
+             if(SpriteAnimation.current == SpriteAnimation.movingForward) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
+            }
+             if(SpriteAnimation.current == SpriteAnimation.movingLeft) {
+                 SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
+             }
+             if(SpriteAnimation.current == SpriteAnimation.movingRight) {
+                 SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
+             }
+             if(SpriteAnimation.current == SpriteAnimation.movingBack) {
+                 SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
+             }
+        }
+
     }
 
     public void showPlayer(Graphics g) {
-        g.drawImage(Hunter, (int) x, (int) y, playerWidth, playerHeight, null);
+        g.drawImage(SpriteAnimation.getCurrent(), (int) x, (int) y, playerWidth, playerHeight, null);
     }
 
     public static double getVelX() {
@@ -77,8 +97,9 @@ public class PlayerOne {
     }
 
     public static void createPlayerOne() {
+        SpriteAnimation.init();
         try {
-            Hunter = ImageIO.read(new File("rsc/player.png"));
+            Hunter = ImageIO.read(new File("rsc/forward1.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

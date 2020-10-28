@@ -1,6 +1,6 @@
 package pack1;
 
-public class Repaint implements Runnable{
+public class Repaint implements Runnable {
     @Override
     public void run() {
         long timestamp_render;
