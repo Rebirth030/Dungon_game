@@ -99,12 +99,5 @@ public class PlayerOne {
 
     public static void createPlayerOne() {
         SpriteAnimation.init();
-        try {
-            Hunter = ImageIO.read(new File("rsc/forward1.png"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Bilder können nicht geladen werden");
-        }
     }
 }
