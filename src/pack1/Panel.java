@@ -17,10 +17,10 @@ public class Panel extends JPanel {
         double offX = -Game.player.getX();
         double offY = -Game.player.getY();
 
-        offX = Game.constrain(offX, -LevelOne.mapWidth + Gui.jf.getWidth() / 2d, -(Gui.jf.getWidth() / 2d) );
+        offX = Game.constrain(offX, -LevelOne.mapWidth + Gui.jf.getWidth() / 2d, -(Gui.jf.getWidth() / 2d));
         offY = Game.constrain(offY, -LevelOne.mapHeight + Gui.jf.getHeight() / 2d, -(Gui.jf.getHeight() / 2d));
 
-        g2d.translate(offX + Gui.jf.getWidth() / 2d , offY + Gui.jf.getHeight() / 2d);
+        g2d.translate(offX + Gui.jf.getWidth() / 2d, offY + Gui.jf.getHeight() / 2d);
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 

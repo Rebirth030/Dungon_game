@@ -3,7 +3,7 @@ package pack1;
 
 import java.util.Timer;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
 
     public static final int FPS = 60;
     public static final long maxLoopTime = 1000 / FPS;
@@ -63,5 +63,4 @@ public class Game implements Runnable{
 
 /*TODO:
     -rectangle für collision detection
-    -acceleration (siehe update funktion)
  */

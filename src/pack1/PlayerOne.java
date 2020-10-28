@@ -26,12 +26,13 @@ public class PlayerOne {
         accX = 0;
         accY = 0;
     }
-//movement mit acc also rundere bewegungen nicht sofort stehen
+
+    //movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
-        if(KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
-        if(KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
-        if(KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
-        if(KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
+        if (KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
+        if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
+        if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
+        if (KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
 
         accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
         accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
@@ -50,19 +51,19 @@ public class PlayerOne {
         accX = 0;
         accY = 0;
 
-        if(velX == 0 && velY == 0){
-             if(SpriteAnimation.current == SpriteAnimation.movingForward) {
+        if (velX == 0 && velY == 0) {
+            if (SpriteAnimation.current == SpriteAnimation.movingForward) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
             }
-             if(SpriteAnimation.current == SpriteAnimation.movingLeft) {
-                 SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
-             }
-             if(SpriteAnimation.current == SpriteAnimation.movingRight) {
-                 SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
-             }
-             if(SpriteAnimation.current == SpriteAnimation.movingBack) {
-                 SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
-             }
+            if (SpriteAnimation.current == SpriteAnimation.movingLeft) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
+            }
+            if (SpriteAnimation.current == SpriteAnimation.movingRight) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
+            }
+            if (SpriteAnimation.current == SpriteAnimation.movingBack) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
+            }
         }
 
     }
