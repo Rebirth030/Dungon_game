@@ -1,16 +1,11 @@
 package pack1;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class PlayerOne {
 
     private static double x, y, velX, velY, accX, accY;
     static double speed = 3;
-    static BufferedImage Hunter;
     static int playerWidth = 100;
     static int playerHeight = 175;
 
@@ -29,10 +24,12 @@ public class PlayerOne {
 
     //movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
-        if (KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
-        if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
-        if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
-        if (KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
+        if (KeyHandler.moveLeft && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBackLeft);
+        else if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
+        else if (KeyHandler.moveRight && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
+        else if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
+        else if (KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
+        else if (KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
 
         accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
         accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
@@ -43,7 +40,7 @@ public class PlayerOne {
         if (Math.abs(velX) <= 0.1) {
             velX = 0;
         }
-        if (Math.abs(velY) <= 0.005) {
+        if (Math.abs(velY) <= 0.1) {
             velY = 0;
         }
         x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, LevelOne.mapWidth);
@@ -64,8 +61,14 @@ public class PlayerOne {
             if (SpriteAnimation.current == SpriteAnimation.movingBack) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
             }
-        }
+            if (SpriteAnimation.current == SpriteAnimation.movingBackRight) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
+            }
+            if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingBackLeft);
+            }
 
+        }
     }
 
     public void showPlayer(Graphics g) {

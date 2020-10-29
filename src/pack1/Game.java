@@ -44,7 +44,7 @@ public class Game implements Runnable {
         player = new PlayerOne();
         PlayerOne.createPlayerOne();
 
-        SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
+        SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
 
         Gui.createGui();
         Repaint render = new Repaint();

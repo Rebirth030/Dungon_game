@@ -18,6 +18,10 @@ public class SpriteAnimation {
     public static Image[] standingForward;
     public static Image[] standingRight;
     public static Image[] standingBack;
+    public static Image[] standingBackRight;
+    public static Image[] movingBackRight;
+    public static Image[] standingBackLeft;
+    public static Image[] movingBackLeft;
 
     static void init() {
         try {
@@ -46,6 +50,18 @@ public class SpriteAnimation {
                     ImageIO.read(new File("rsc/back3.png")),
                     ImageIO.read(new File("rsc/back4.png"))
             };
+            movingBackRight = new Image[]{
+                    ImageIO.read(new File("rsc/BackRight1.png")),
+                    ImageIO.read(new File("rsc/BackRight2.png")),
+                    ImageIO.read(new File("rsc/BackRight3.png")),
+                    ImageIO.read(new File("rsc/BackRight4.png"))
+            };
+            movingBackLeft = new Image[]{
+                    ImageIO.read(new File("rsc/backLeft1.png")),
+                    ImageIO.read(new File("rsc/backLeft2.png")),
+                    ImageIO.read(new File("rsc/backLeft3.png")),
+                    ImageIO.read(new File("rsc/backLeft4.png"))
+            };
             standingLeft = new Image[]{
                     ImageIO.read(new File("rsc/leftStanding1.png")),
                     ImageIO.read(new File("rsc/leftStanding2.png")),
@@ -69,6 +85,18 @@ public class SpriteAnimation {
                     ImageIO.read(new File("rsc/backStanding2.png")),
                     ImageIO.read(new File("rsc/backStanding3.png")),
                     ImageIO.read(new File("rsc/backStanding4.png"))
+            };
+            standingBackRight = new Image[]{
+                    ImageIO.read(new File("rsc/BackRightStanding1.png")),
+                    ImageIO.read(new File("rsc/BackRightStanding2.png")),
+                    ImageIO.read(new File("rsc/BackRightStanding3.png")),
+                    ImageIO.read(new File("rsc/BackRightStanding4.png"))
+            };
+            standingBackLeft = new Image[]{
+                    ImageIO.read(new File("rsc/backLeftStanding1.png")),
+                    ImageIO.read(new File("rsc/backLeftStanding2.png")),
+                    ImageIO.read(new File("rsc/backLeftStanding3.png")),
+                    ImageIO.read(new File("rsc/backLeftStanding4.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();
