@@ -17,7 +17,6 @@ public class Game implements Runnable {
         while (running) {
             oldTimestamp = System.currentTimeMillis();
             PlayerOne.update();
-            LevelOne.collisionDetection();
             timestamp = System.currentTimeMillis();
             if (timestamp - oldTimestamp > maxLoopTime) {
                 continue;
@@ -63,4 +62,9 @@ public class Game implements Runnable {
 
 /*TODO:
     -rectangle für collision detection
+    -Enemys mind 2
+    -Boss
+    -Ki / pattern zur Steuerung der Enemys
+    -Kugeln/schuüße
+
  */

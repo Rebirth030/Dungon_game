@@ -28,14 +28,6 @@ public class LevelOne extends Rectangle {
             System.out.println("Background Error");
         }
     }
-
-    public static void collisionDetection() {
-        while (r1.intersects(r2)) {
-            System.out.println("Collision");
-        }
-    }
-
-
 }
 
 

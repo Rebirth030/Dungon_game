@@ -28,7 +28,7 @@ public class Panel extends JPanel {
         g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
         Game.player.showPlayer(g);
 
-        //g.fillRect(0,0,1920,150);
+        g.fillRect(0,0,1920,100);
 
 
     }

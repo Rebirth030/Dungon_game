@@ -4,7 +4,8 @@ import java.awt.*;
 
 public class PlayerOne {
 
-    private static double x, y, velX, velY, accX, accY;
+    private static double velX, velY, accX, accY;
+    public static double x, y;
     static double speed = 3;
     static int playerWidth = 100;
     static int playerHeight = 175;
@@ -67,8 +68,8 @@ public class PlayerOne {
             if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBackLeft);
             }
-
         }
+        Collider.wallCollider();
     }
 
     public void showPlayer(Graphics g) {
@@ -84,11 +85,11 @@ public class PlayerOne {
         return velY;
     }
 
-    public double getX() {
+    public static double getX() {
         return x;
     }
 
-    public double getY() {
+    public static double getY() {
         return y;
     }
 
