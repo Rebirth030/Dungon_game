@@ -2,40 +2,58 @@ package pack1;
 
 
 import java.util.Timer;
-import java.util.TimerTask;
 
-public class Game {
+public class Game implements Runnable {
 
-	public static final int FPS = 60;
-	public static final long maxLoopTime = 1000 / FPS;
-	public static PlayerOne player;
-	//public static Panel paint = new Panel();
+    public static final int FPS = 60;
+    public static final long maxLoopTime = 1000 / FPS;
+    public static PlayerOne player;
+    public static boolean running = true;
 
-   /* public static void Timer() {
-        Timer myTimer = new Timer();
-        myTimer.scheduleAtFixedRate(new Repaint(),0,1000 / FPS);
+    @Override
+    public void run() {
+        long timestamp;
+        long oldTimestamp;
+        while (running) {
+            oldTimestamp = System.currentTimeMillis();
+            PlayerOne.update();
+            timestamp = System.currentTimeMillis();
+            if (timestamp - oldTimestamp > maxLoopTime) {
+                continue;
+            }
+            if (timestamp - oldTimestamp <= maxLoopTime) {
+                try {
+                    Thread.sleep(maxLoopTime - (timestamp - oldTimestamp));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
-*/
 
+    public static double constrain(double val, double min, double max) {
+        return Math.min(Math.max(val, min), max);
+    }
 
-	public static double constrain(double val, double min, double max) {
-		return Math.min(Math.max(val, min), max);
-	}
+    public static void main(String[] args) {
 
-	public static void main(String[] args) {
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new UpdatePlayer(), 0, 1000 / 60);
+        Game game = new Game();
+        new Thread(game).start();
 
-		player = new PlayerOne();
+        player = new PlayerOne();
+        PlayerOne.createPlayerOne();
 
-		Gui.createGui();
-		timer.scheduleAtFixedRate(new Repaint(), 0, 1000 / 60);
-		LevelOne.createLevelOne();
-		PlayerOne.createPlayerOne();
-		new KeyHandler();
+        SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
 
+        Gui.createGui();
+        Repaint render = new Repaint();
+        new Thread(render).start();
+        LevelOne.createLevelOne();
+        new KeyHandler();
 
-	}
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
+    }
 
 }
 
@@ -44,5 +62,9 @@ public class Game {
 
 /*TODO:
     -rectangle für collision detection
-    -acceleration (siehe update funktion)
+    -Enemys mind 2
+    -Boss
+    -Ki / pattern zur Steuerung der Enemys
+    -Kugeln/schuüße
+
  */
