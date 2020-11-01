@@ -2,6 +2,7 @@ package pack1;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 
 public class KeyHandler implements KeyListener {
     static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false;

@@ -6,29 +6,30 @@ import java.awt.*;
 
 public class Gui {
 
-    static Panel pnl1;
-    static JFrame jf;
+	static Panel pnl1;
+	static JFrame jf;
 
 
-    public static void createGui() {
+	public static void createGui() {
 
-        jf = new JFrame();
-        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jf.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        jf.setUndecorated(true);
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jf.setLocationRelativeTo(null);
-        jf.setLayout(null);
-        jf.setTitle("Dungon Game");
-        jf.setResizable(true);
-        jf.addKeyListener(new KeyHandler());
-        jf.requestFocus();
-        jf.setVisible(true);
+		jf = new JFrame();
+		jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		jf.setUndecorated(true);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setLocationRelativeTo(null);
+		jf.setLayout(null);
+		jf.setTitle("Dungon Game");
+		jf.setResizable(true);
+		jf.addKeyListener(new KeyHandler());
+		jf.requestFocus();
+		jf.setVisible(true);
 
-        pnl1 = new Panel();
-        pnl1.setBounds(0, 0, jf.getWidth(), jf.getHeight());
-        pnl1.setVisible(true);
-        jf.add(pnl1);
+		pnl1 = new Panel();
+		pnl1.setBounds(0, 0, jf.getWidth(), jf.getHeight());
+		pnl1.setVisible(true);
+		pnl1.addMouseListener(new MouseHandler());
+		jf.add(pnl1);
 
-    }
+	}
 }

@@ -6,32 +6,38 @@ import java.util.TimerTask;
 
 public class Panel extends JPanel {
 
-    @Override
-    protected void paintComponent(Graphics g) {
+	public static double offX = 0D;
+	public static double offY = 0D;
 
-        super.paintComponent(g);
+	@Override
+	protected void paintComponent(Graphics g) {
 
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		super.paintComponent(g);
 
-        double offX = -PlayerOne.getX();
-        double offY = -PlayerOne.getY();
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        offX = Game.constrain(offX, -LevelOne.mapWidth + Gui.jf.getWidth() / 2d, -(Gui.jf.getWidth() / 2d));
-        offY = Game.constrain(offY, -LevelOne.mapHeight + Gui.jf.getHeight() / 2d, -(Gui.jf.getHeight() / 2d));
+		offX = -PlayerOne.getX();
+		offY = -PlayerOne.getY();
 
-        g2d.translate(offX + Gui.jf.getWidth() / 2d, offY + Gui.jf.getHeight() / 2d);
+		offX = Game.constrain(offX, -LevelOne.mapWidth + Gui.jf.getWidth() / 2d, -(Gui.jf.getWidth() / 2d));
+		offY = Game.constrain(offY, -LevelOne.mapHeight + Gui.jf.getHeight() / 2d, -(Gui.jf.getHeight() / 2d));
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		offX += Gui.jf.getWidth() / 2d;
+		offY += Gui.jf.getHeight() / 2d;
+
+		g2d.translate(offX, offY);
+
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 
-        g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
-        Game.player.showPlayer(g);
+		g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
+		Game.player.showPlayer(g);
 
-        //g.fillRect(Collider.exit.x, Collider.exit.y, Collider.exit.width, Collider.exit.height);
+		//g.fillRect(Collider.exit.x, Collider.exit.y, Collider.exit.width, Collider.exit.height);
 
 
-    }
+	}
 }
 
 
