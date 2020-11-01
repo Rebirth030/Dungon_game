@@ -9,6 +9,8 @@ public class PlayerOne {
     static double speed = 3;
     static int playerWidth = 100;
     static int playerHeight = 175;
+    static boolean alive;
+    static int livePoints;
 
     public PlayerOne() {
         this(3000, 1800);
@@ -21,25 +23,24 @@ public class PlayerOne {
         velY = 0;
         accX = 0;
         accY = 0;
+        alive = true;
+        livePoints = 4;
     }
 
     //movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
-        if(KeyHandler.wallAbove) {
+        if (KeyHandler.wallAbove) {
             KeyHandler.moveUp = false;
-            if(velY<0) velY = 0;
-        }
-        else if(KeyHandler.wallUnder) {
+            if (velY < 0) velY = 0;
+        } else if (KeyHandler.wallUnder) {
             KeyHandler.moveDown = false;
-            if(velY>0) velY = 0;
-        }
-        else if(KeyHandler.wallLeft) {
+            if (velY > 0) velY = 0;
+        } else if (KeyHandler.wallLeft) {
             KeyHandler.moveLeft = false;
-            if(velX<0) velX = 0;
-        }
-        else if(KeyHandler.wallRight) {
+            if (velX < 0) velX = 0;
+        } else if (KeyHandler.wallRight) {
             KeyHandler.moveRight = false;
-            if(velX>0) velX = 0;
+            if (velX > 0) velX = 0;
         }
 
 
@@ -70,20 +71,15 @@ public class PlayerOne {
         if (velX == 0 && velY == 0) {
             if (SpriteAnimation.current == SpriteAnimation.movingBackRight) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
-            }
-            else if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
+            } else if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBackLeft);
-            }
-            else if (SpriteAnimation.current == SpriteAnimation.movingForward) {
+            } else if (SpriteAnimation.current == SpriteAnimation.movingForward) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
-            }
-            else if (SpriteAnimation.current == SpriteAnimation.movingLeft) {
+            } else if (SpriteAnimation.current == SpriteAnimation.movingLeft) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
-            }
-            else if (SpriteAnimation.current == SpriteAnimation.movingRight) {
+            } else if (SpriteAnimation.current == SpriteAnimation.movingRight) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
-            }
-            else if (SpriteAnimation.current == SpriteAnimation.movingBack) {
+            } else if (SpriteAnimation.current == SpriteAnimation.movingBack) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
             }
         }
