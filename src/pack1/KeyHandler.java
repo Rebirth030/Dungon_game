@@ -4,7 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, moving = false;
+    static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false;
+    static boolean wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -16,13 +17,13 @@ public class KeyHandler implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_W) {
             moveUp = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
+        else if (e.getKeyCode() == KeyEvent.VK_S) {
             moveDown = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_D) {
+        else if (e.getKeyCode() == KeyEvent.VK_D) {
             moveRight = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
+        else if (e.getKeyCode() == KeyEvent.VK_A) {
             moveLeft = true;
         }
     }
