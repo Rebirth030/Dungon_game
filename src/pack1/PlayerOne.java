@@ -5,18 +5,18 @@ import java.awt.*;
 public class PlayerOne {
 
     private static double velX, velY, accX, accY;
-    public static double x, y;
+    private static double x, y;
     static double speed = 3;
     static int playerWidth = 100;
     static int playerHeight = 175;
 
     public PlayerOne() {
-        this(200, 200);
+        this(3000, 1800);
     }
 
     public PlayerOne(double x, double y) {
-        this.x = x;
-        this.y = y;
+        PlayerOne.x = x;
+        PlayerOne.y = y;
         velX = 0;
         velY = 0;
         accX = 0;
@@ -25,12 +25,30 @@ public class PlayerOne {
 
     //movement mit acc also rundere bewegungen nicht sofort stehen
     public static void update() {
-        if (KeyHandler.moveLeft && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBackLeft);
-        else if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
-        else if (KeyHandler.moveRight && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
-        else if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
+        if(KeyHandler.wallAbove) {
+            KeyHandler.moveUp = false;
+            if(velY<0) velY = 0;
+        }
+        else if(KeyHandler.wallUnder) {
+            KeyHandler.moveDown = false;
+            if(velY>0) velY = 0;
+        }
+        else if(KeyHandler.wallLeft) {
+            KeyHandler.moveLeft = false;
+            if(velX<0) velX = 0;
+        }
+        else if(KeyHandler.wallRight) {
+            KeyHandler.moveRight = false;
+            if(velX>0) velX = 0;
+        }
+
+
+        if (KeyHandler.moveRight && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBackRight);
+        else if (KeyHandler.moveLeft && KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBackLeft);
         else if (KeyHandler.moveDown) SpriteAnimation.setCurrent(SpriteAnimation.movingForward);
         else if (KeyHandler.moveUp) SpriteAnimation.setCurrent(SpriteAnimation.movingBack);
+        else if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
+        else if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
 
         accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
         accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
@@ -50,23 +68,23 @@ public class PlayerOne {
         accY = 0;
 
         if (velX == 0 && velY == 0) {
-            if (SpriteAnimation.current == SpriteAnimation.movingForward) {
-                SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
-            }
-            if (SpriteAnimation.current == SpriteAnimation.movingLeft) {
-                SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
-            }
-            if (SpriteAnimation.current == SpriteAnimation.movingRight) {
-                SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
-            }
-            if (SpriteAnimation.current == SpriteAnimation.movingBack) {
-                SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
-            }
             if (SpriteAnimation.current == SpriteAnimation.movingBackRight) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
             }
-            if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
+            else if (SpriteAnimation.current == SpriteAnimation.movingBackLeft) {
                 SpriteAnimation.setCurrent(SpriteAnimation.standingBackLeft);
+            }
+            else if (SpriteAnimation.current == SpriteAnimation.movingForward) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingForward);
+            }
+            else if (SpriteAnimation.current == SpriteAnimation.movingLeft) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingLeft);
+            }
+            else if (SpriteAnimation.current == SpriteAnimation.movingRight) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
+            }
+            else if (SpriteAnimation.current == SpriteAnimation.movingBack) {
+                SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
             }
         }
         Collider.wallCollider();

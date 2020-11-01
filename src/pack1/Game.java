@@ -61,10 +61,9 @@ public class Game implements Runnable {
 
 
 /*TODO:
-    -rectangle für collision detection
-    -Enemys mind 2
-    -Boss
     -Ki / pattern zur Steuerung der Enemys
     -Kugeln/schuüße
+    -Ausgang nicht mehr links laufen können
+    -Maps
 
  */
