@@ -136,10 +136,6 @@ public class SpriteAnimation {
 
 
     public static Image getEnemy_1() {
-        for (int i = 0; i <= 14; i++) {
-            if(enemy_1Counter<=14) enemy_1Counter++;
-            else enemy_1Counter = 0;
-        }
         return Enemy_1[enemy_1Counter];
     }
 }
