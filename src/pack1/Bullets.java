@@ -6,10 +6,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class Bullets {
-	static public double x, y, velX, velY;
-	static public int width = 40, height = 40;
+	public double x, y, velX, velY;
+	public int width = 40, height = 40;
 
-	public static final double VELOCITY = 10D;
+	public static final double VELOCITY = 8D;
 
 	public Bullets(double x, double y, double velX, double velY) {
 		this.x = x;
@@ -29,6 +29,8 @@ public class Bullets {
 	public void update() {
 		x += velX;
 		y += velY;
+
+		if (x < 0 || x > LevelOne.mapWidth || y < 0 || y > LevelOne.mapHeight) PlayerOne.bullets.remove(this);
 
 	}
 }

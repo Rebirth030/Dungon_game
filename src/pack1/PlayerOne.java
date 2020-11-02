@@ -49,12 +49,14 @@ public class PlayerOne {
 		offX *= Bullets.VELOCITY;
 		offY *= Bullets.VELOCITY;
 
+		System.out.println(offX);
+
 		PlayerOne.bullets.add(new Bullets(playerX, playerY, offX, offY));
 	}
 
 	//movement mit acc also rundere bewegungen nicht sofort stehen
 	public static void update() {
-		for (Bullets b : bullets) b.update();
+		for (int i = 0; i < bullets.size(); i++) bullets.get(i).update();
 
 		if (KeyHandler.wallAbove) {
 			KeyHandler.moveUp = false;
