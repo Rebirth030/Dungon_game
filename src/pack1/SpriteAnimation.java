@@ -12,6 +12,7 @@ public class SpriteAnimation {
     public static Image[] current;
 
     public static int counter = 0;
+    public static int enemy_1Counter = 0;
     public static Image[] movingRight;
     public static Image[] movingBack;
     public static Image[] standingLeft;
@@ -22,6 +23,7 @@ public class SpriteAnimation {
     public static Image[] movingBackRight;
     public static Image[] standingBackLeft;
     public static Image[] movingBackLeft;
+    public static Image[] Enemy_1;
 
     static void init() {
         try {
@@ -98,6 +100,22 @@ public class SpriteAnimation {
                     ImageIO.read(new File("rsc/backLeftStanding3.png")),
                     ImageIO.read(new File("rsc/backLeftStanding4.png"))
             };
+            Enemy_1 = new Image[]{
+                    ImageIO.read(new File("rsc/Enemy_first1.png")),
+                    ImageIO.read(new File("rsc/Enemy_first2.png")),
+                    ImageIO.read(new File("rsc/Enemy_first3.png")),
+                    ImageIO.read(new File("rsc/Enemy_first4.png")),
+                    ImageIO.read(new File("rsc/Enemy_first5.png")),
+                    ImageIO.read(new File("rsc/Enemy_first6.png")),
+                    ImageIO.read(new File("rsc/Enemy_first7.png")),
+                    ImageIO.read(new File("rsc/Enemy_first8.png")),
+                    ImageIO.read(new File("rsc/Enemy_first9.png")),
+                    ImageIO.read(new File("rsc/Enemy_first10.png")),
+                    ImageIO.read(new File("rsc/Enemy_first11.png")),
+                    ImageIO.read(new File("rsc/Enemy_first12.png")),
+                    ImageIO.read(new File("rsc/Enemy_first13.png")),
+                    ImageIO.read(new File("rsc/Enemy_first14.png"))
+            };
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Image Error");
@@ -115,4 +133,15 @@ public class SpriteAnimation {
     public static Image getCurrent() {
         return current[counter];
     }
+
+
+    public static Image getEnemy_1() {
+        for (int i = 0; i <= 14; i++) {
+            if(enemy_1Counter<=14) enemy_1Counter++;
+            else enemy_1Counter = 0;
+        }
+        return Enemy_1[enemy_1Counter];
+    }
 }
+
+

@@ -1,12 +1,15 @@
 package pack1;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Bullets {
-	public double x, y, velX, velY;
-	public int width = 10, height = 10;
+	static public double x, y, velX, velY;
+	static public int width = 40, height = 40;
 
-	public static final double VELOCITY = 5D;
+	public static final double VELOCITY = 10D;
 
 	public Bullets(double x, double y, double velX, double velY) {
 		this.x = x;
@@ -16,12 +19,16 @@ public class Bullets {
 	}
 
 	public void draw(Graphics2D g) {
-		g.setColor(Color.WHITE);
-		g.drawRect((int) x, (int) y, width, height);
+		try {
+			g.drawImage(ImageIO.read(new File("rsc/schuss_player.png")), (int) x, (int) y, width, height, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void update() {
 		x += velX;
 		y += velY;
+
 	}
 }

@@ -8,7 +8,7 @@ public class EnemyClass_1 {
     static double speed = 3;
     static int enemyWidth = 100;
     static int enemyHeight = 175;
-    static boolean alive,moveUp,moveDown,moveRight,moveLeft;
+    static boolean alive,moveUp,moveDown,moveRight,moveLeft,wallAbove,wallUnder,wallLeft,wallRight;
     static int livePoints;
 
     public EnemyClass_1() {
@@ -26,8 +26,7 @@ public class EnemyClass_1 {
         livePoints = 4;
     }
 
-    //movement mit acc also rundere bewegungen nicht sofort stehen
-    public static void enemyMovement() {
+    public static void updateEnemy_1() {
         if(KeyHandler.wallAbove) {
             moveUp = false;
             if(velY<0) velY = 0;
@@ -61,10 +60,10 @@ public class EnemyClass_1 {
         accX = 0;
         accY = 0;
 
-        Collider.wallCollider();
+        Collider.enemyWallCollider();
     }
 
-    public void showPlayer(Graphics g) {
-        g.drawImage(SpriteAnimation.getCurrent(), (int) x, (int) y, enemyWidth, enemyHeight, null);
+    public void showEnemy_1(Graphics g) {
+        g.drawImage(SpriteAnimation.getEnemy_1(), (int) x, (int) y, enemyWidth, enemyHeight, null);
     }
 }

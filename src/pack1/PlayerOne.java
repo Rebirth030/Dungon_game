@@ -39,7 +39,7 @@ public class PlayerOne {
 		double offX = (x - Panel.offX) - playerX;
 		double offY = (y - Panel.offY) - playerY;
 
-		System.out.println(offX + " : " + offY);
+		//System.out.println(offX + " : " + offY);
 
 		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
@@ -110,7 +110,7 @@ public class PlayerOne {
 				SpriteAnimation.setCurrent(SpriteAnimation.standingBack);
 			}
 		}
-		Collider.wallCollider();
+		Collider.PlayerWallCollider();
 	}
 
 	public void showPlayer(Graphics g) {
