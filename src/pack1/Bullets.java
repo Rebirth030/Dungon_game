@@ -9,13 +9,14 @@ public class Bullets {
 	public double x, y, velX, velY;
 	public int width = 40, height = 40;
 
-	public static final double VELOCITY = 8D;
+	public static final double VELOCITY = 10D;
 
 	public Bullets(double x, double y, double velX, double velY) {
 		this.x = x;
 		this.y = y;
 		this.velX = velX;
 		this.velY = velY;
+		Rectangle bullet = new Rectangle((int)x, (int)y, width, height);
 	}
 
 	public void draw(Graphics2D g) {
@@ -30,7 +31,10 @@ public class Bullets {
 		x += velX;
 		y += velY;
 
-		if (x < 0 || x > LevelOne.mapWidth || y < 0 || y > LevelOne.mapHeight) PlayerOne.bullets.remove(this);
+		if (x < 35 || x > LevelOne.mapWidth -155|| y < 100 || y > LevelOne.mapHeight-80) {
+			PlayerOne.bullets.remove(this);
+		}
+		Rectangle bullet = new Rectangle((int)x, (int)y, width, height);
 
 	}
 }

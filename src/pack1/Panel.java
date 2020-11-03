@@ -2,7 +2,6 @@ package pack1;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.TimerTask;
 
 public class Panel extends JPanel {
 
@@ -33,6 +32,7 @@ public class Panel extends JPanel {
 
 		g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
 		Game.player.showPlayer(g);
+		for (int i = 0; i < EnemyClass_1.enemysClass_1.size(); i++) EnemyClass_1.enemysClass_1.get(i).showEnemy_1(g);
 
 		//g.fillRect(Collider.exit.x, Collider.exit.y, Collider.exit.width, Collider.exit.height);
 

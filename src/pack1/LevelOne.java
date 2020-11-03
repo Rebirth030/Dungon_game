@@ -21,7 +21,7 @@ public class LevelOne extends Rectangle {
     public static void createLevelOne() {
         try {
             //background
-            back1 = ImageIO.read(new File("rsc/Background1.png"));
+            back1 = ImageIO.read(new File("rsc/dungonBackground.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -45,42 +45,4 @@ public class Collider {
             }
         }
     }
-
-    //public static void BulletWallCollider() {
-    //Rectangle bullet = new Rectangle((int) Bullets.x, (int) Bullets.y, Bullets.width, Bullets.height);
-    //if(bullet.intersects(wall1) || bullet.intersects(wall2) || bullet.intersects(wall3) || bullet.intersects(wall4) || bullet.intersects(wall5)) bullet.?
-    // }
-    public static void enemyWallCollider() {
-        Rectangle enemy = new Rectangle((int) PlayerOne.getX(), (int) PlayerOne.getY(), PlayerOne.playerWidth, PlayerOne.playerHeight);
-        if (enemy.intersects(wall1)) {
-            KeyHandler.wallAbove = true;
-        } else {
-            KeyHandler.wallAbove = false;
-            if (enemy.intersects(wall2)) {
-                KeyHandler.wallUnder = true;
-            } else {
-                KeyHandler.wallUnder = false;
-                if (enemy.intersects(wall3)) {
-                    KeyHandler.wallLeft = true;
-                } else {
-                    KeyHandler.wallLeft = false;
-                    if (enemy.intersects(wall4)) {
-                        KeyHandler.wallRight = true;
-                    } else {
-                        KeyHandler.wallRight = false;
-                        if (enemy.intersects(wall5)) {
-                            KeyHandler.wallRight = true;
-                        } else {
-                            KeyHandler.wallRight = false;
-                            if (enemy.intersects(exit)) {
-                                KeyHandler.wallRight = true;
-                            } else {
-                                KeyHandler.wallRight =false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

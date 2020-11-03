@@ -9,6 +9,7 @@ public class Game implements Runnable {
     public static final long maxLoopTime = 1000 / FPS;
     public static PlayerOne player;
     public static boolean running = true;
+    public static EnemyClass_1 enemy_1;
 
     @Override
     public void run() {
@@ -30,6 +31,10 @@ public class Game implements Runnable {
             }
         }
     }
+    public static void addEnemyClass_1() {
+        EnemyClass_1.enemysClass_1.add(new EnemyClass_1(2000,300));
+        EnemyClass_1.enemysClass_1.add(new EnemyClass_1(2000,500));
+    }
 
     public static double constrain(double val, double min, double max) {
         return Math.min(Math.max(val, min), max);
@@ -42,8 +47,9 @@ public class Game implements Runnable {
 
         player = new PlayerOne();
         PlayerOne.createPlayerOne();
+        addEnemyClass_1();
 
-        SpriteAnimation.setCurrent(SpriteAnimation.standingBackRight);
+        SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
 
         Gui.createGui();
         Repaint render = new Repaint();
@@ -52,7 +58,7 @@ public class Game implements Runnable {
         new KeyHandler();
 
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
+        timer.scheduleAtFixedRate(new AnimationThread(), 0, 1);
     }
 
 }

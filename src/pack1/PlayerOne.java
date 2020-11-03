@@ -17,7 +17,7 @@ public class PlayerOne {
 	public static ArrayList<Bullets> bullets = new ArrayList<>();
 
 	public PlayerOne() {
-		this(3000, 1800);
+		this(564, 782);
 	}
 
 	public PlayerOne(double x, double y) {
@@ -28,7 +28,7 @@ public class PlayerOne {
 		accX = 0;
 		accY = 0;
 		alive = true;
-		livePoints = 4;
+		livePoints = 5;
 	}
 
 	public static void addBullet(int x, int y) {
@@ -39,8 +39,6 @@ public class PlayerOne {
 		double offX = (x - Panel.offX) - playerX;
 		double offY = (y - Panel.offY) - playerY;
 
-		//System.out.println(offX + " : " + offY);
-
 		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
 		offX /= distance;
@@ -49,7 +47,7 @@ public class PlayerOne {
 		offX *= Bullets.VELOCITY;
 		offY *= Bullets.VELOCITY;
 
-		System.out.println(offX);
+		//System.out.println(offX);
 
 		PlayerOne.bullets.add(new Bullets(playerX, playerY, offX, offY));
 	}
@@ -58,6 +56,7 @@ public class PlayerOne {
 	public static void update() {
 		for (int i = 0; i < bullets.size(); i++) bullets.get(i).update();
 
+		System.out.println(x+";"+y);
 		if (KeyHandler.wallAbove) {
 			KeyHandler.moveUp = false;
 			if (velY < 0) velY = 0;
@@ -117,7 +116,7 @@ public class PlayerOne {
 
 	public void showPlayer(Graphics g) {
 		g.drawImage(SpriteAnimation.getCurrent(), (int) x, (int) y, playerWidth, playerHeight, null);
-		for (Bullets b : bullets) b.draw((Graphics2D) g);
+		for (int i = 0; i < bullets.size(); i++) bullets.get(i).draw((Graphics2D) g);
 	}
 
 	public static double getVelX() {
