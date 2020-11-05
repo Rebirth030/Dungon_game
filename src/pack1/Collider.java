@@ -12,7 +12,7 @@ public class Collider {
 
 
     public static void PlayerWallCollider() {
-        Rectangle player = new Rectangle((int) PlayerOne.getX(), (int) PlayerOne.getY(), PlayerOne.playerWidth, PlayerOne.playerHeight);
+        Rectangle player = new Rectangle((int) Game.player.x, (int) Game.player.y, Game.player.width, Game.player.height);
         if (player.intersects(wall1)) {
             KeyHandler.wallAbove = true;
         } else {

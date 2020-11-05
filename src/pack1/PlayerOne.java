@@ -1,61 +1,19 @@
 package pack1;
 
-import java.awt.*;
-import java.io.BufferedWriter;
-import java.util.ArrayList;
-
-public class PlayerOne {
-
-	private static double velX, velY, accX, accY;
-	private static double x, y;
-	static double speed = 3;
-	static int playerWidth = 100;
-	static int playerHeight = 175;
-	static boolean alive;
-	static int livePoints;
-
-	public static ArrayList<Bullets> bullets = new ArrayList<>();
+public class PlayerOne extends Entity{
 
 	public PlayerOne() {
 		this(564, 782);
 	}
 
 	public PlayerOne(double x, double y) {
-		PlayerOne.x = x;
-		PlayerOne.y = y;
-		velX = 0;
-		velY = 0;
-		accX = 0;
-		accY = 0;
-		alive = true;
+		super(x, y);
 		livePoints = 5;
 	}
 
-	public static void addBullet(int x, int y) {
-		double playerX = PlayerOne.x + PlayerOne.playerWidth;
-		double playerY = PlayerOne.y + PlayerOne.playerHeight / 2D;
-
-
-		double offX = (x - Panel.offX) - playerX;
-		double offY = (y - Panel.offY) - playerY;
-
-		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
-
-		offX /= distance;
-		offY /= distance;
-
-		offX *= Bullets.VELOCITY;
-		offY *= Bullets.VELOCITY;
-
-		//System.out.println(offX);
-
-		PlayerOne.bullets.add(new Bullets(playerX, playerY, offX, offY));
-	}
-
 	//movement mit acc also rundere bewegungen nicht sofort stehen
-	public static void update() {
-		for (int i = 0; i < bullets.size(); i++) bullets.get(i).update();
-
+	@Override
+	public void update() {
 		System.out.println(x+";"+y);
 		if (KeyHandler.wallAbove) {
 			KeyHandler.moveUp = false;
@@ -79,22 +37,7 @@ public class PlayerOne {
 		else if (KeyHandler.moveRight) SpriteAnimation.setCurrent(SpriteAnimation.movingRight);
 		else if (KeyHandler.moveLeft) SpriteAnimation.setCurrent(SpriteAnimation.movingLeft);
 
-		accX = (KeyHandler.moveLeft ? -speed : (KeyHandler.moveRight ? speed : 0)) / 5f;
-		accY = (KeyHandler.moveUp ? -speed : (KeyHandler.moveDown ? speed : 0)) / 5f;
-		velX += accX;
-		velY += accY;
-		velX *= 0.9;
-		velY *= 0.9;
-		if (Math.abs(velX) <= 0.1) {
-			velX = 0;
-		}
-		if (Math.abs(velY) <= 0.1) {
-			velY = 0;
-		}
-		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, LevelOne.mapWidth);
-		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, LevelOne.mapHeight);
-		accX = 0;
-		accY = 0;
+		super.update();
 
 		if (velX == 0 && velY == 0) {
 			if (SpriteAnimation.current == SpriteAnimation.movingBackRight) {
@@ -113,37 +56,6 @@ public class PlayerOne {
 		}
 		Collider.PlayerWallCollider();
 	}
-
-	public void showPlayer(Graphics g) {
-		g.drawImage(SpriteAnimation.getCurrent(), (int) x, (int) y, playerWidth, playerHeight, null);
-		for (int i = 0; i < bullets.size(); i++) bullets.get(i).draw((Graphics2D) g);
-	}
-
-	public static double getVelX() {
-		return velX;
-	}
-
-
-	public static double getVelY() {
-		return velY;
-	}
-
-	public static double getX() {
-		return x;
-	}
-
-	public static double getY() {
-		return y;
-	}
-
-	public double getAccX() {
-		return accX;
-	}
-
-	public double getAccY() {
-		return accY;
-	}
-
 	public static void createPlayerOne() {
 		SpriteAnimation.init();
 	}

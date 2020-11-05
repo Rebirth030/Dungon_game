@@ -1,141 +1,57 @@
 package pack1;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+
 
 public class SpriteAnimation {
-    public static Image[] movingForward;
-    public static Image[] movingLeft;
 
-    public static Image[] current;
+    public int counter = 0;
 
-    public static int counter = 0;
-    public static int enemy_1Counter = 0;
-    public static Image[] movingRight;
-    public static Image[] movingBack;
-    public static Image[] standingLeft;
-    public static Image[] standingForward;
-    public static Image[] standingRight;
-    public static Image[] standingBack;
-    public static Image[] standingBackRight;
-    public static Image[] movingBackRight;
-    public static Image[] standingBackLeft;
-    public static Image[] movingBackLeft;
-    public static Image[] Enemy_1;
+    public Image[] current;
 
-    static void init() {
-        try {
-            movingForward = new Image[]{
-                    ImageIO.read(new File("rsc/forward1.png")),
-                    ImageIO.read(new File("rsc/forward2.png")),
-                    ImageIO.read(new File("rsc/forward3.png")),
-                    ImageIO.read(new File("rsc/forward4.png"))
+    public Image[] movingForward;
+    public Image[] movingLeft;
+    public Image[] movingRight;
+    public Image[] movingBack;
+    public Image[] movingBackRight;
+    public Image[] movingBackLeft;
 
-            };
-            movingLeft = new Image[]{
-                    ImageIO.read(new File("rsc/left1.png")),
-                    ImageIO.read(new File("rsc/left2.png")),
-                    ImageIO.read(new File("rsc/left3.png")),
-                    ImageIO.read(new File("rsc/left4.png"))
-            };
-            movingRight = new Image[]{
-                    ImageIO.read(new File("rsc/right1.png")),
-                    ImageIO.read(new File("rsc/right2.png")),
-                    ImageIO.read(new File("rsc/right3.png")),
-                    ImageIO.read(new File("rsc/right4.png"))
-            };
-            movingBack = new Image[]{
-                    ImageIO.read(new File("rsc/back1.png")),
-                    ImageIO.read(new File("rsc/back2.png")),
-                    ImageIO.read(new File("rsc/back3.png")),
-                    ImageIO.read(new File("rsc/back4.png"))
-            };
-            movingBackRight = new Image[]{
-                    ImageIO.read(new File("rsc/BackRight1.png")),
-                    ImageIO.read(new File("rsc/BackRight2.png")),
-                    ImageIO.read(new File("rsc/BackRight3.png")),
-                    ImageIO.read(new File("rsc/BackRight4.png"))
-            };
-            movingBackLeft = new Image[]{
-                    ImageIO.read(new File("rsc/backLeft1.png")),
-                    ImageIO.read(new File("rsc/backLeft2.png")),
-                    ImageIO.read(new File("rsc/backLeft3.png")),
-                    ImageIO.read(new File("rsc/backLeft4.png"))
-            };
-            standingLeft = new Image[]{
-                    ImageIO.read(new File("rsc/leftStanding1.png")),
-                    ImageIO.read(new File("rsc/leftStanding2.png")),
-                    ImageIO.read(new File("rsc/leftStanding3.png")),
-                    ImageIO.read(new File("rsc/leftStanding4.png"))
-            };
-            standingForward = new Image[]{
-                    ImageIO.read(new File("rsc/forwardStanding1.png")),
-                    ImageIO.read(new File("rsc/forwardStanding2.png")),
-                    ImageIO.read(new File("rsc/forwardStanding3.png")),
-                    ImageIO.read(new File("rsc/forwardStanding4.png"))
-            };
-            standingRight = new Image[]{
-                    ImageIO.read(new File("rsc/rightStanding1.png")),
-                    ImageIO.read(new File("rsc/rightStanding2.png")),
-                    ImageIO.read(new File("rsc/rightStanding3.png")),
-                    ImageIO.read(new File("rsc/rightStanding4.png"))
-            };
-            standingBack = new Image[]{
-                    ImageIO.read(new File("rsc/backStanding1.png")),
-                    ImageIO.read(new File("rsc/backStanding2.png")),
-                    ImageIO.read(new File("rsc/backStanding3.png")),
-                    ImageIO.read(new File("rsc/backStanding4.png"))
-            };
-            standingBackRight = new Image[]{
-                    ImageIO.read(new File("rsc/BackRightStanding1.png")),
-                    ImageIO.read(new File("rsc/BackRightStanding2.png")),
-                    ImageIO.read(new File("rsc/BackRightStanding3.png")),
-                    ImageIO.read(new File("rsc/BackRightStanding4.png"))
-            };
-            standingBackLeft = new Image[]{
-                    ImageIO.read(new File("rsc/backLeftStanding1.png")),
-                    ImageIO.read(new File("rsc/backLeftStanding2.png")),
-                    ImageIO.read(new File("rsc/backLeftStanding3.png")),
-                    ImageIO.read(new File("rsc/backLeftStanding4.png"))
-            };
-            Enemy_1 = new Image[]{
-                    ImageIO.read(new File("rsc/Enemy_first1.png")),
-                    ImageIO.read(new File("rsc/Enemy_first2.png")),
-                    ImageIO.read(new File("rsc/Enemy_first3.png")),
-                    ImageIO.read(new File("rsc/Enemy_first4.png")),
-                    ImageIO.read(new File("rsc/Enemy_first5.png")),
-                    ImageIO.read(new File("rsc/Enemy_first6.png")),
-                    ImageIO.read(new File("rsc/Enemy_first7.png")),
-                    ImageIO.read(new File("rsc/Enemy_first8.png")),
-                    ImageIO.read(new File("rsc/Enemy_first9.png")),
-                    ImageIO.read(new File("rsc/Enemy_first10.png")),
-                    ImageIO.read(new File("rsc/Enemy_first11.png")),
-                    ImageIO.read(new File("rsc/Enemy_first12.png")),
-                    ImageIO.read(new File("rsc/Enemy_first13.png")),
-                    ImageIO.read(new File("rsc/Enemy_first14.png"))
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Image Error");
-        }
+    public Image[] standingLeft;
+    public Image[] standingForward;
+    public Image[] standingRight;
+    public Image[] standingBack;
+    public Image[] standingBackRight;
+    public Image[] standingBackLeft;
 
+    public Image[] Enemy_1;
 
+    public SpriteAnimation(Image[] movingForward, Image[] movingLeft, Image[] movingRight, Image[] movingBack, Image[] movingBackRight, Image[] movingBackLeft, Image[] standingLeft, Image[] standingForward, Image[] standingRight, Image[] standingBack, Image[] standingBackRight, Image[] standingBackLeft) {
+        this.movingForward = movingForward;
+        this.movingLeft = movingLeft;
+        this.movingRight = movingRight;
+        this.movingBack = movingBack;
+        this.movingBackRight = movingBackRight;
+        this.movingBackLeft = movingBackLeft;
+        this.standingLeft = standingLeft;
+        this.standingForward = standingForward;
+        this.standingRight = standingRight;
+        this.standingBack = standingBack;
+        this.standingBackRight = standingBackRight;
+        this.standingBackLeft = standingBackLeft;
     }
 
-    public static void setCurrent(Image[] newCurrent) {
+    public void setCurrent(Image[] newCurrent) {
         if (current == newCurrent) return;
         current = newCurrent;
         counter = 0;
     }
 
-    public static Image getCurrent() {
+    public Image getCurrent() {
         return current[counter];
     }
 
 
-    public static Image getEnemy_1() {
+    public Image getEnemy_1() {
         return Enemy_1[enemy_1Counter];
     }
 }

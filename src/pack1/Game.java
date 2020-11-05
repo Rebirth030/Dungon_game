@@ -9,7 +9,7 @@ public class Game implements Runnable {
     public static final long maxLoopTime = 1000 / FPS;
     public static PlayerOne player;
     public static boolean running = true;
-    public static EnemyClass_1 enemy_1;
+    public static Enemy enemy_1;
 
     @Override
     public void run() {
@@ -17,7 +17,7 @@ public class Game implements Runnable {
         long oldTimestamp;
         while (running) {
             oldTimestamp = System.currentTimeMillis();
-            PlayerOne.update();
+            player.update();
             timestamp = System.currentTimeMillis();
             if (timestamp - oldTimestamp > maxLoopTime) {
                 continue;
@@ -32,8 +32,8 @@ public class Game implements Runnable {
         }
     }
     public static void addEnemyClass_1() {
-        EnemyClass_1.enemysClass_1.add(new EnemyClass_1(2000,300));
-        EnemyClass_1.enemysClass_1.add(new EnemyClass_1(2000,500));
+        Enemy.enemysClass_1.add(new Enemy(2000,300));
+        Enemy.enemysClass_1.add(new Enemy(2000,500));
     }
 
     public static double constrain(double val, double min, double max) {

@@ -8,7 +8,7 @@ public class EnemyUpdate implements Runnable {
         long oldTimestamp;
         while (Game.running) {
             oldTimestamp = System.currentTimeMillis();
-            for (int i = 0; i < EnemyClass_1.enemysClass_1.size(); i++) EnemyClass_1.enemysClass_1.get(i).updateEnemy_1();
+            for (int i = 0; i < Enemy.enemysClass_1.size(); i++) Enemy.enemysClass_1.get(i).updateEnemy_1();
             timestamp = System.currentTimeMillis();
             if (timestamp - oldTimestamp > Game.maxLoopTime) {
                 continue;

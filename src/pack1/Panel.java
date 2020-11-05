@@ -16,8 +16,8 @@ public class Panel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		offX = -PlayerOne.getX();
-		offY = -PlayerOne.getY();
+		offX = -Game.player.x;
+		offY = -Game.player.y;
 
 		offX = Game.constrain(offX, -LevelOne.mapWidth + Gui.jf.getWidth() / 2d, -(Gui.jf.getWidth() / 2d));
 		offY = Game.constrain(offY, -LevelOne.mapHeight + Gui.jf.getHeight() / 2d, -(Gui.jf.getHeight() / 2d));
@@ -31,8 +31,8 @@ public class Panel extends JPanel {
 
 
 		g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
-		Game.player.showPlayer(g);
-		for (int i = 0; i < EnemyClass_1.enemysClass_1.size(); i++) EnemyClass_1.enemysClass_1.get(i).showEnemy_1(g);
+		Game.player.show(g);
+		for (int i = 0; i < Enemy.enemysClass_1.size(); i++) Enemy.enemysClass_1.get(i).showEnemy_1(g);
 
 		//g.fillRect(Collider.exit.x, Collider.exit.y, Collider.exit.width, Collider.exit.height);
 

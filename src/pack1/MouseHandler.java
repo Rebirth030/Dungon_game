@@ -13,7 +13,7 @@ public class MouseHandler implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			PlayerOne.addBullet(e.getX(), e.getY());
+			Game.player.addBullet(e.getX(), e.getY());
 		}
 	}
 

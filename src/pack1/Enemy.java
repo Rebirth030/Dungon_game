@@ -3,7 +3,7 @@ package pack1;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class EnemyClass_1 {
+public class Enemy {
     public double velX, velY, accX, accY, x, y;
     static double speed = 3;
     static int enemyWidth = 100;
@@ -11,30 +11,11 @@ public class EnemyClass_1 {
     static boolean moveUp, moveDown, moveRight, moveLeft, wallAbove, wallUnder, wallLeft, wallRight;
     boolean alive;
     int livePoints;
-    private Rectangle enemyClass_1Hitbox;
 
-    public static ArrayList<EnemyClass_1> enemysClass_1 = new ArrayList<>();
-    public static ArrayList<EnemyBullets> enemyClass_1bullets = new ArrayList<>();
+    public static ArrayList<Enemy> enemysClass_1 = new ArrayList<>();
 
-    public static void addEnemyBullet(double x, double y) {
-        double enemyX = x + EnemyClass_1.enemyWidth;
-        double enemyY = y + EnemyClass_1.enemyHeight / 2D;
 
-        double offX = (PlayerOne.getX() - Panel.offX) - enemyX;
-        double offY = (PlayerOne.getY() - Panel.offY) - enemyY;
-
-        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
-
-        offX /= distance;
-        offY /= distance;
-
-        offX *= EnemyBullets.VELOCITY;
-        offY *= EnemyBullets.VELOCITY;
-
-        EnemyClass_1.enemyClass_1bullets.add(new EnemyBullets(enemyX, enemyY, offX, offY));
-    }
-
-    public EnemyClass_1(double x, double y) {
+    public Enemy(double x, double y) {
         this.x = x;
         this.y = y;
         velX = 0;
@@ -46,9 +27,6 @@ public class EnemyClass_1 {
     }
 
     public void updateEnemy_1() {
-        //hier hilfe
-        addEnemyBullet(x, y);
-        //
         if (KeyHandler.wallAbove) {
             moveUp = false;
             if (velY < 0) velY = 0;
@@ -79,17 +57,9 @@ public class EnemyClass_1 {
         accX = 0;
         accY = 0;
 
-        enemyClass_1Hitbox = new Rectangle((int) x, (int) y, EnemyClass_1.enemyWidth, EnemyClass_1.enemyHeight);
-        if (enemyClass_1Hitbox.intersects(Collider.wall1)) moveUp = false;
-        else if (enemyClass_1Hitbox.intersects(Collider.wall2)) moveDown = false;
-        else if (enemyClass_1Hitbox.intersects(Collider.wall3)) moveLeft = false;
-        else if (enemyClass_1Hitbox.intersects(Collider.wall4)) moveRight = false;
-        else if (enemyClass_1Hitbox.intersects(Collider.wall5)) moveRight = false;
-        else if (enemyClass_1Hitbox.intersects(Collider.exit)) moveRight = false;
     }
 
     public void showEnemy_1(Graphics g) {
         g.drawImage(SpriteAnimation.getEnemy_1(), (int) x, (int) y, enemyWidth, enemyHeight, null);
-        for (int i = 0; i < enemyClass_1bullets.size(); i++) enemyClass_1bullets.get(i).draw((Graphics2D) g);
     }
 }

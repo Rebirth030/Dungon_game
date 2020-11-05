@@ -11,12 +11,6 @@ public class LevelOne extends Rectangle {
 
     static int mapWidth = 3840, mapHeight = 2160;
     static BufferedImage back1;
-    static int playerX = (int) PlayerOne.getVelX();
-    static int playerY = (int) PlayerOne.getVelY();
-    static int playerX2 = (int) PlayerOne.getVelX() - PlayerOne.playerWidth;
-    static int playerY2 = (int) PlayerOne.getVelX() - PlayerOne.playerHeight;
-    static Rectangle r1 = new Rectangle(0, 0, 500, 500);
-    static Rectangle r2 = new Rectangle(playerX, playerY, playerX2, playerY2);
 
     public static void createLevelOne() {
         try {
