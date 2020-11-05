@@ -5,55 +5,58 @@ import java.awt.*;
 
 public class SpriteAnimation {
 
-    public int counter = 0;
+	public static SpriteAnimation playerAnimation;
+	public static SpriteAnimation enemyAnimation;
 
-    public Image[] current;
+	public int counter = 0;
 
-    public Image[] movingForward;
-    public Image[] movingLeft;
-    public Image[] movingRight;
-    public Image[] movingBack;
-    public Image[] movingBackRight;
-    public Image[] movingBackLeft;
+	public Image[] current;
 
-    public Image[] standingLeft;
-    public Image[] standingForward;
-    public Image[] standingRight;
-    public Image[] standingBack;
-    public Image[] standingBackRight;
-    public Image[] standingBackLeft;
+	public Image[] movingForward;
+	public Image[] movingLeft;
+	public Image[] movingRight;
+	public Image[] movingBack;
+	public Image[] movingBackRight;
+	public Image[] movingBackLeft;
 
-    public Image[] Enemy_1;
+	public Image[] standingLeft;
+	public Image[] standingForward;
+	public Image[] standingRight;
+	public Image[] standingBack;
+	public Image[] standingBackRight;
+	public Image[] standingBackLeft;
 
-    public SpriteAnimation(Image[] movingForward, Image[] movingLeft, Image[] movingRight, Image[] movingBack, Image[] movingBackRight, Image[] movingBackLeft, Image[] standingLeft, Image[] standingForward, Image[] standingRight, Image[] standingBack, Image[] standingBackRight, Image[] standingBackLeft) {
-        this.movingForward = movingForward;
-        this.movingLeft = movingLeft;
-        this.movingRight = movingRight;
-        this.movingBack = movingBack;
-        this.movingBackRight = movingBackRight;
-        this.movingBackLeft = movingBackLeft;
-        this.standingLeft = standingLeft;
-        this.standingForward = standingForward;
-        this.standingRight = standingRight;
-        this.standingBack = standingBack;
-        this.standingBackRight = standingBackRight;
-        this.standingBackLeft = standingBackLeft;
-    }
+	public SpriteAnimation(Image[] movingForward, Image[] movingLeft, Image[] movingRight, Image[] movingBack, Image[] movingBackLeft, Image[] movingBackRight, Image[] standingForward, Image[] standingLeft, Image[] standingRight, Image[] standingBack, Image[] standingBackLeft, Image[] standingBackRight) {
+		this.movingForward = movingForward;
+		this.movingLeft = movingLeft;
+		this.movingRight = movingRight;
+		this.movingBack = movingBack;
+		this.movingBackLeft = movingBackLeft;
+		this.movingBackRight = movingBackRight;
+		this.standingForward = standingForward;
+		this.standingLeft = standingLeft;
+		this.standingRight = standingRight;
+		this.standingBack = standingBack;
+		this.standingBackLeft = standingBackLeft;
+		this.standingBackRight = standingBackRight;
+	}
 
-    public void setCurrent(Image[] newCurrent) {
-        if (current == newCurrent) return;
-        current = newCurrent;
-        counter = 0;
-    }
+	public void setCurrent(Image[] newCurrent) {
+		if (current == newCurrent) return;
+		if (newCurrent == null) return;
+		current = newCurrent;
+		counter = 0;
+	}
 
-    public Image getCurrent() {
-        return current[counter];
-    }
+	public Image getCurrent() {
+		return current[counter];
+	}
 
-
-    public Image getEnemy_1() {
-        return Enemy_1[enemy_1Counter];
-    }
+	public void update() {
+		System.out.println("++");
+		counter++;
+		counter %= current.length;
+	}
 }
 
 

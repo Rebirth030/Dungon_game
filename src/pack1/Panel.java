@@ -32,7 +32,7 @@ public class Panel extends JPanel {
 
 		g.drawImage(LevelOne.back1, 0, 0, LevelOne.mapWidth, LevelOne.mapHeight, null);
 		Game.player.show(g);
-		for (int i = 0; i < Enemy.enemysClass_1.size(); i++) Enemy.enemysClass_1.get(i).showEnemy_1(g);
+		for (int i = 0; i < Enemy.enemies.size(); i++) Enemy.enemies.get(i).show(g);
 
 		//g.fillRect(Collider.exit.x, Collider.exit.y, Collider.exit.width, Collider.exit.height);
 

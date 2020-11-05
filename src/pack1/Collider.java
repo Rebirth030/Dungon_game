@@ -14,30 +14,30 @@ public class Collider {
     public static void PlayerWallCollider() {
         Rectangle player = new Rectangle((int) Game.player.x, (int) Game.player.y, Game.player.width, Game.player.height);
         if (player.intersects(wall1)) {
-            KeyHandler.wallAbove = true;
+            Game.player.wallAbove = true;
         } else {
-            KeyHandler.wallAbove = false;
+            Game.player.wallAbove = false;
             if (player.intersects(wall2)) {
-                KeyHandler.wallUnder = true;
+                Game.player.wallUnder = true;
             } else {
-                KeyHandler.wallUnder = false;
+                Game.player.wallUnder = false;
                 if (player.intersects(wall3)) {
-                    KeyHandler.wallLeft = true;
+                    Game.player.wallLeft = true;
                 } else {
-                    KeyHandler.wallLeft = false;
+                    Game.player.wallLeft = false;
                     if (player.intersects(wall4)) {
-                        KeyHandler.wallRight = true;
+                        Game.player.wallRight = true;
                     } else {
-                        KeyHandler.wallRight = false;
+                        Game.player.wallRight = false;
                         if (player.intersects(wall5)) {
-                            KeyHandler.wallRight = true;
+                            Game.player.wallRight = true;
                         } else {
-                            KeyHandler.wallRight = false;
+                            Game.player.wallRight = false;
                             if (player.intersects(exit)/* && enemyCounter == 0*/) {
-                                KeyHandler.wallAbove = true;
-                                KeyHandler.wallUnder = true;
-                                KeyHandler.wallLeft = true;
-                                KeyHandler.moveRight = true;
+                                Game.player.wallAbove = true;
+                                Game.player.wallUnder = true;
+                                Game.player.wallLeft = true;
+                                Game.player.moveRight = true;
                             }
                         }
                     }

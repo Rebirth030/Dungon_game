@@ -11,6 +11,16 @@ public class Bullets {
 	public Entity parent;
 	public static final double VELOCITY = 10D;
 
+	public static Image bullet;
+
+	static {
+		try {
+			bullet = ImageIO.read(new File("rsc/player/schuss_player.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public Bullets(Entity parent, double x, double y, double velX, double velY) {
 		this.parent = parent;
 		this.x = x;
@@ -21,23 +31,20 @@ public class Bullets {
 
 
 	public void draw(Graphics2D g) {
-		try {
-			g.drawImage(ImageIO.read(new File("rsc/schuss_player.png")), (int) x, (int) y, width, height, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		g.drawImage(bullet, (int) x, (int) y, width, height, null);
 	}
 
 	public void update() {
 		x += velX;
 		y += velY;
 
-		if (x < 35 || x > LevelOne.mapWidth -155|| y < 100 || y > LevelOne.mapHeight-80) {
+		if (x < 35 || x > LevelOne.mapWidth - 155 || y < 100 || y > LevelOne.mapHeight - 80) {
 			parent.bullets.remove(this);
 		}
-		Rectangle bullet = new Rectangle((int)x, (int)y, width, height);
-		for(int i = 0; i < Entity.entities.size(); i++ ){
-			if(bullet.intersects(Entity.entities.get(i).getCollider())) {
+		Rectangle bullet = new Rectangle((int) x, (int) y, width, height);
+		for (int i = 0; i < Entity.entities.size(); i++) {
+			if(Entity.entities.get(i) == this.parent) continue;
+			if (bullet.intersects(Entity.entities.get(i).getCollider())) {
 				Entity.entities.get(i).hit();
 				parent.bullets.remove(this);
 			}

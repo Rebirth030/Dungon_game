@@ -5,9 +5,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
 public class KeyHandler implements KeyListener {
-    static boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false;
-    static boolean wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false;
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -16,16 +13,16 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            moveUp = true;
+            Game.player.moveUp = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
-            moveDown = true;
+            Game.player.moveDown = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            moveRight = true;
+            Game.player.moveRight = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            moveLeft = true;
+            Game.player.moveLeft = true;
         }
     }
 
@@ -33,16 +30,16 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            moveUp = false;
+            Game.player.moveUp = false;
         }
         if (e.getKeyCode() == KeyEvent.VK_S) {
-            moveDown = false;
+            Game.player.moveDown = false;
         }
         if (e.getKeyCode() == KeyEvent.VK_D) {
-            moveRight = false;
+            Game.player.moveRight = false;
         }
         if (e.getKeyCode() == KeyEvent.VK_A) {
-            moveLeft = false;
+            Game.player.moveLeft = false;
         }
     }
 

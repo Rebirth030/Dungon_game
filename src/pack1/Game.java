@@ -32,8 +32,8 @@ public class Game implements Runnable {
         }
     }
     public static void addEnemyClass_1() {
-        Enemy.enemysClass_1.add(new Enemy(2000,300));
-        Enemy.enemysClass_1.add(new Enemy(2000,500));
+        Enemy.enemies.add(new Enemy(2000,300));
+        Enemy.enemies.add(new Enemy(2000,500));
     }
 
     public static double constrain(double val, double min, double max) {
@@ -41,15 +41,14 @@ public class Game implements Runnable {
     }
 
     public static void main(String[] args) {
+        InitSpriteAnimation.init();
+
+        player = new PlayerOne();
 
         Game game = new Game();
         new Thread(game).start();
 
-        player = new PlayerOne();
-        PlayerOne.createPlayerOne();
         addEnemyClass_1();
-
-        SpriteAnimation.setCurrent(SpriteAnimation.standingRight);
 
         Gui.createGui();
         Repaint render = new Repaint();
@@ -58,7 +57,7 @@ public class Game implements Runnable {
         new KeyHandler();
 
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new AnimationThread(), 0, 1);
+        timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
     }
 
 }
