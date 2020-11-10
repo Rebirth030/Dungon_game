@@ -41,7 +41,7 @@ public class InitSpriteAnimation {
 		Image[] imageArrays = new Image[14];
 
 		for (int i = 1; i <= imageArrays.length; i++) {
-			imageArrays[i - 1] = ImageIO.read(new File("rsc/Enemy1/Enemy_first" + i + ".png"));
+			imageArrays[i - 1] = ImageIO.read(new File("rsc/enemy1/Enemy_first" + i + ".png"));
 		}
 
 		SpriteAnimation.enemyAnimation = new SpriteAnimation(

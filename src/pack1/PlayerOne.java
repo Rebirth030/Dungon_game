@@ -13,6 +13,26 @@ public class PlayerOne extends Entity{
 		spriteAnimation.setCurrent(spriteAnimation.standingRight);
 	}
 
+	@Override
+	public void addBullet(int x, int y) {
+		double entityX = this.x;
+		double entityY = this.y;
+
+
+		double offX = (x - Panel.offX) - entityX;
+		double offY = (y - Panel.offY) - entityY;
+
+		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+		offX /= distance;
+		offY /= distance;
+
+		offX *= Bullets.VELOCITY;
+		offY *= Bullets.VELOCITY;
+
+		bullets.add(new Bullets(this, entityX, entityY, offX, offY));
+	}
+
 	//movement mit acc also rundere bewegungen nicht sofort stehen
 	@Override
 	public void update() {
@@ -56,5 +76,6 @@ public class PlayerOne extends Entity{
 			}
 		}
 		Collider.PlayerWallCollider();
+
 	}
 }

@@ -38,7 +38,7 @@ public class Bullets {
 		x += velX;
 		y += velY;
 
-		if (x < 35 || x > LevelOne.mapWidth - 155 || y < 100 || y > LevelOne.mapHeight - 80) {
+		if (x < 35 || x > Map.mapWidth - 155 || y < 100 || y > Map.mapHeight - 80) {
 			parent.bullets.remove(this);
 		}
 		Rectangle bullet = new Rectangle((int) x, (int) y, width, height);

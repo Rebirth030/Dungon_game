@@ -3,15 +3,38 @@ package pack1;
 
 import java.util.Timer;
 
+/**
+ * Die Game Klasse, die das Spiel startet.
+ * Sie implementiert die Klasse Runnable.
+ *
+ * @author Julian Martens
+ *  *
+ *  * @version 1.0
+ */
+
+
 public class Game implements Runnable {
 
+    /**
+     * Die Variable FPS, legt die Frames Per Second fest, die erreicht werden sollen. Die FPS werden auf {@value} festgelegt.
+     */
     public static final int FPS = 60;
+    /**
+     * Die maximale Zeit für einen durchgang des Threadswird auf {@value} festgelegt in der Variable maxLoopTime.
+     */
     public static final long maxLoopTime = 1000 / FPS;
-    public static PlayerOne player;
     public static boolean running = true;
-    public static Enemy enemy_1;
+    public static PlayerOne player;
 
     @Override
+    /**
+     * Die run Methode aus der Runnable Klasse, die von einem Thread ausgeführt wird, ruft in der PlayerOne Klasse die "update" Funktion aus.
+     *
+     * Die Variable oldTimestamp speichert die Startzeit des auszuführenden codes in milisekunden.
+     * Die Variable timestamp speichert die Zeit, nachdem die "update" Methode der Klasse PlayerOne, ausgeführt wurde.
+     *
+     * Wenn die Differenz von oldTimestamp und timestamp, also die zeit, die es braucht die "update" Funktion aus zu führen, größer wird als maxLoopTime, wird die ausführung von "update" abgebrochen.
+     */
     public void run() {
         long timestamp;
         long oldTimestamp;
@@ -31,9 +54,10 @@ public class Game implements Runnable {
             }
         }
     }
+
     public static void addEnemyClass_1() {
-        Enemy.enemies.add(new Enemy(2000,300));
-        Enemy.enemies.add(new Enemy(2000,500));
+        Enemy.enemies.add(new Enemy(2000, 300));
+        Enemy.enemies.add(new Enemy(2000, 500));
     }
 
     public static double constrain(double val, double min, double max) {
@@ -42,6 +66,7 @@ public class Game implements Runnable {
 
     public static void main(String[] args) {
         InitSpriteAnimation.init();
+        Map.createMap();
 
         player = new PlayerOne();
 
@@ -53,7 +78,13 @@ public class Game implements Runnable {
         Gui.createGui();
         Repaint render = new Repaint();
         new Thread(render).start();
-        LevelOne.createLevelOne();
+
+        EnemyUpdate update = new EnemyUpdate();
+        new Thread(update).start();
+
+        EnemyMovementUpdate updateMovement = new EnemyMovementUpdate();
+        new Thread(updateMovement).start();
+
         new KeyHandler();
 
         Timer timer = new Timer();
@@ -67,8 +98,6 @@ public class Game implements Runnable {
 
 /*TODO:
     -Ki / pattern zur Steuerung der Enemys
-    -Kugeln/schuüße
+    -Kugeln/schuüße perfektionieren
     -Ausgang nicht mehr links laufen können
-    -Maps
-
  */

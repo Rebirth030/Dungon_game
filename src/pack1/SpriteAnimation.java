@@ -53,7 +53,6 @@ public class SpriteAnimation {
 	}
 
 	public void update() {
-		System.out.println("++");
 		counter++;
 		counter %= current.length;
 	}

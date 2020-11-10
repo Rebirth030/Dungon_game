@@ -8,7 +8,7 @@ public class Entity {
 	static double speed = 3;
 	int width = 100;
 	int height = 175;
-	boolean moveUp, moveDown, moveRight, moveLeft, wallAbove, wallUnder, wallLeft, wallRight;
+	boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false;
 	boolean alive;
 	int livePoints;
 	SpriteAnimation spriteAnimation;
@@ -33,6 +33,8 @@ public class Entity {
 
 	public void hit() {
 		livePoints--;
+		Panel.offX = Panel.offX +2000;
+		Panel.offX = Panel.offX -2000;
 	}
 
 	public void addBullet(int x, int y) {
@@ -70,8 +72,8 @@ public class Entity {
 		if (Math.abs(velY) <= 0.1) {
 			velY = 0;
 		}
-		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, LevelOne.mapWidth);
-		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, LevelOne.mapHeight);
+		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, Map.mapWidth);
+		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, Map.mapHeight);
 		accX = 0;
 		accY = 0;
 
