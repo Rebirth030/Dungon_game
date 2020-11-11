@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Bullets {
-	public double x, y, velX, velY;
+	private double x;
+	private double y;
+	private final double velX, velY;
 	public int width = 40, height = 40;
 	public Entity parent;
 	public static final double VELOCITY = 10D;

@@ -5,13 +5,13 @@ public class Repaint implements Runnable {
     public void run() {
         long timestamp_render;
         long oldTimestamp_render;
-        while (Game.running) {
+        while (Game.isRunning()) {
             oldTimestamp_render = System.currentTimeMillis();
             Gui.pnl1.repaint();
             timestamp_render = System.currentTimeMillis();
-            if (timestamp_render - oldTimestamp_render <= Game.maxLoopTime) {
+            if (timestamp_render - oldTimestamp_render <= Game.getMaxLoopTime()) {
                 try {
-                    Thread.sleep(Game.maxLoopTime - (timestamp_render - oldTimestamp_render));
+                    Thread.sleep(Game.getMaxLoopTime() - (timestamp_render - oldTimestamp_render));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

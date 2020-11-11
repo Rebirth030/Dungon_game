@@ -5,7 +5,6 @@ import java.awt.*;
 
 
 public class Gui {
-
 	static Panel pnl1;
 	static JFrame jf;
 

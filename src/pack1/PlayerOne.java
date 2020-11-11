@@ -19,8 +19,8 @@ public class PlayerOne extends Entity{
 		double entityY = this.y;
 
 
-		double offX = (x - Panel.offX) - entityX;
-		double offY = (y - Panel.offY) - entityY;
+		double offX = (x - Panel.getOffX()) - entityX;
+		double offY = (y - Panel.getOffY()) - entityY;
 
 		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 

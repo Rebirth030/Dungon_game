@@ -8,7 +8,7 @@ public class SpriteAnimation {
 	public static SpriteAnimation playerAnimation;
 	public static SpriteAnimation enemyAnimation;
 
-	public int counter = 0;
+	private int counter = 0;
 
 	public Image[] current;
 

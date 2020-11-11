@@ -26,9 +26,23 @@ public class Enemy extends Entity {
     public void movement() {
         double i = Math.random() * 10;
         double a = Math.random() * 1000;
-        double xMovement = x - Game.player.x;
-        double yMovement = y - Game.player.y;
-        switch ((int) i) {
+
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = (Game.player.x - Panel.getOffX()) - enemyX;
+        double offY = (Game.player.y - Panel.getOffY()) - enemyY;
+
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+        offX /= distance;
+        offY /= distance;
+
+        offX *= 5;
+        offY *= 5;
+
+        /*switch ((int) i) {
             case 0:
             case 1:
                 moveUp = true;
@@ -76,6 +90,6 @@ public class Enemy extends Entity {
                 System.out.println("player");
             default:
 
-        }
+        }*/
     }
 }

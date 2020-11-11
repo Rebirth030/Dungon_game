@@ -3,16 +3,16 @@ package pack1;
 import java.awt.*;
 
 public class Collider {
-    static Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
-    static Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
-    static Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
-    static Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
-    static Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
-    static Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
+    private static final Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
+    private static final Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
+    private static final Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
+    private static final Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
+    private static final Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
+    private static final Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
 
 
     public static void PlayerWallCollider() {
-        Rectangle player = new Rectangle((int) Game.player.x, (int) Game.player.y, Game.player.width, Game.player.height);
+        Rectangle player = new Rectangle((int) Game.player.getX(), (int) Game.player.getY(), Game.player.width, Game.player.height);
         if (player.intersects(wall1)) {
             Game.player.wallAbove = true;
         } else {

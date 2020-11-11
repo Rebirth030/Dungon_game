@@ -5,8 +5,10 @@ import java.awt.*;
 
 public class Panel extends JPanel {
 
-	public static double offX = 0D;
-	public static double offY = 0D;
+
+
+	private static double offX = 0D;
+	private static double offY = 0D;
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -37,6 +39,20 @@ public class Panel extends JPanel {
 		//g.fillRect(Collider.wall5.x, Collider.wall5.y, Collider.wall5.width, Collider.wall5.height);
 
 
+	}
+	public static double getOffX() {
+		return offX;
+	}
+
+	public static double getOffY() {
+		return offY;
+	}
+	public static void setOffX(double offX) {
+		Panel.offX = offX;
+	}
+
+	public static void setOffY(double offY) {
+		Panel.offY = offY;
 	}
 }
 

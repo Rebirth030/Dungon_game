@@ -3,18 +3,19 @@ package pack1;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Entity {
-	public double velX, velY, accX, accY, x, y;
-	static double speed = 3;
-	int width = 100;
-	int height = 175;
-	boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false;
-	boolean alive;
-	int livePoints;
-	SpriteAnimation spriteAnimation;
+public abstract class Entity {
 
-	public static ArrayList<Entity> entities = new ArrayList<>();
-	public ArrayList<Bullets> bullets = new ArrayList<>();
+	protected double velX, velY, accX, accY, x, y;
+	private static final double speed = 3;
+	protected int width = 100;
+	protected int height = 175;
+	protected boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false;
+	protected boolean alive;
+	protected int livePoints;
+	protected SpriteAnimation spriteAnimation;
+
+	protected static ArrayList<Entity> entities = new ArrayList<>();
+	protected ArrayList<Bullets> bullets = new ArrayList<>();
 
 
 	public Entity(SpriteAnimation spriteAnimation, double x, double y) {
@@ -33,8 +34,8 @@ public class Entity {
 
 	public void hit() {
 		livePoints--;
-		Panel.offX = Panel.offX +2000;
-		Panel.offX = Panel.offX -2000;
+		/*Panel.setOffX(Panel.getOffX() +2000);
+		Panel.setOffY(Panel.getOffX() -2000);*/
 	}
 
 	public void addBullet(int x, int y) {
@@ -42,8 +43,8 @@ public class Entity {
 		double entityY = this.y;
 
 
-		double offX = (x - Panel.offX) - entityX;
-		double offY = (y - Panel.offY) - entityY;
+		double offX = (x - Panel.getOffX()) - entityX;
+		double offY = (y - Panel.getOffX()) - entityY;
 
 		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
@@ -96,6 +97,14 @@ public class Entity {
 	public void updateAnimation() {
 		if (spriteAnimation != null)
 			spriteAnimation.update();
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
 	}
 }
 

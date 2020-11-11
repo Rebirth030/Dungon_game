@@ -19,12 +19,14 @@ public class Game implements Runnable {
      * Die Variable FPS, legt die Frames Per Second fest, die erreicht werden sollen. Die FPS werden auf {@value} festgelegt.
      */
     public static final int FPS = 60;
+
+
     /**
      * Die maximale Zeit für einen durchgang des Threadswird auf {@value} festgelegt in der Variable maxLoopTime.
      */
-    public static final long maxLoopTime = 1000 / FPS;
-    public static boolean running = true;
-    public static PlayerOne player;
+    private static final long getMaxLoopTime = 1000 / FPS;
+    private static boolean running = true;
+    static PlayerOne player;
 
     @Override
     /**
@@ -42,12 +44,12 @@ public class Game implements Runnable {
             oldTimestamp = System.currentTimeMillis();
             player.update();
             timestamp = System.currentTimeMillis();
-            if (timestamp - oldTimestamp > maxLoopTime) {
+            if (timestamp - oldTimestamp > getMaxLoopTime) {
                 continue;
             }
-            if (timestamp - oldTimestamp <= maxLoopTime) {
+            if (timestamp - oldTimestamp <= getMaxLoopTime) {
                 try {
-                    Thread.sleep(maxLoopTime - (timestamp - oldTimestamp));
+                    Thread.sleep(getMaxLoopTime - (timestamp - oldTimestamp));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +91,13 @@ public class Game implements Runnable {
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
+    }
+    public static long getMaxLoopTime() {
+        return getMaxLoopTime;
+    }
+
+    public static boolean isRunning() {
+        return running;
     }
 
 }
