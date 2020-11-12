@@ -78,6 +78,7 @@ public abstract class Entity {
 		accX = 0;
 		accY = 0;
 
+		collide();
 	}
 
 	public Rectangle getCollider() {
@@ -103,9 +104,26 @@ public abstract class Entity {
 		return x;
 	}
 
-	public double getY() {
-		return y;
+	public double getY() { return y; }
+
+	public void collide() {
+		Rectangle entityCollider = getCollider();
+		wallAbove = entityCollider.intersects(Collider.wall1);
+		wallUnder = entityCollider.intersects(Collider.wall2);
+		wallLeft = entityCollider.intersects(Collider.wall3);
+		wallRight = entityCollider.intersects(Collider.wall4) || entityCollider.intersects(Collider.wall5);
+
+		double minX = velX,maxX = velX, minY = velY, maxY = velY;
+		if(wallAbove) minY = 0;
+		if(wallUnder) maxY = 0;
+		if(wallLeft) minX = 0;
+		if(wallRight) maxX = 0;
+
+		velX = Game.constrain(velX, minX, maxX);
+		velY = Game.constrain(velY, minY, maxY);
+
 	}
 }
+
 
 

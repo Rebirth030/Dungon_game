@@ -1,6 +1,6 @@
 package pack1;
 
-public class PlayerOne extends Entity{
+public class PlayerOne extends Entity {
 
 	public PlayerOne() {
 		this(564, 782);
@@ -36,6 +36,8 @@ public class PlayerOne extends Entity{
 	//movement mit acc also rundere bewegungen nicht sofort stehen
 	@Override
 	public void update() {
+		super.update();
+
 		if (wallAbove) {
 			moveUp = false;
 			if (velY < 0) velY = 0;
@@ -58,7 +60,6 @@ public class PlayerOne extends Entity{
 		else if (moveRight) spriteAnimation.setCurrent(spriteAnimation.movingRight);
 		else if (moveLeft) spriteAnimation.setCurrent(spriteAnimation.movingLeft);
 
-		super.update();
 
 		if (velX == 0 && velY == 0) {
 			if (spriteAnimation.current == spriteAnimation.movingBackRight) {
@@ -75,7 +76,21 @@ public class PlayerOne extends Entity{
 				spriteAnimation.setCurrent(spriteAnimation.standingBack);
 			}
 		}
-		Collider.PlayerWallCollider();
+		collide();
+		if (getCollider().intersects(Collider.exit) && Map.enemyCounter == 0 && Map.levelCounter == 0) {
+			wallAbove = true;
+			wallUnder = true;
+			wallLeft = true;
+			moveRight = true;
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				Map.levelCounter = 1;
+				//Game.player.PlayerOne(0,0); // 0,0 nur testweise
+			}
+
+		}
 
 	}
 }

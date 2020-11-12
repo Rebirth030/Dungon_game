@@ -49,6 +49,7 @@ public class SpriteAnimation {
 	}
 
 	public Image getCurrent() {
+		counter %= current.length;
 		return current[counter];
 	}
 

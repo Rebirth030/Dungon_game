@@ -62,6 +62,15 @@ public class Game implements Runnable {
         Enemy.enemies.add(new Enemy(2000, 500));
     }
 
+    /**
+     * Guckt, wenn vel < min gibt min aus, wenn vel> max gitb max aus sonst gibt vel zurück.
+     * guckt quasi das ein rückgabe wert nicht größer als die zwei mitgegebenen werte wird.
+     *
+     * @param val
+     * @param min
+     * @param max
+     * @return
+     */
     public static double constrain(double val, double min, double max) {
         return Math.min(Math.max(val, min), max);
     }

@@ -1,5 +1,6 @@
 package pack1;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Enemy extends Entity {
@@ -11,18 +12,23 @@ public class Enemy extends Entity {
         spriteAnimation.setCurrent(spriteAnimation.movingForward);
     }
 
-
-    public void update(int i) {
+    @Override
+    public void update() {
         super.update();
         if (livePoints == 0) {
             enemies.remove(this);
             alive = false;
             x = Map.mapWidth;
             y = -Map.mapHeight;
-            Collider.enemyOneWallCollider(i);
         }
-
     }
+
+    @Override
+    public void collide() {
+        super.collide();
+        wallRight = wallRight || getCollider().intersects(Collider.exit);
+    }
+
     public void movement() {
         double i = Math.random() * 10;
         double a = Math.random() * 1000;
@@ -31,16 +37,16 @@ public class Enemy extends Entity {
         double enemyY = this.y;
 
 
-        double offX = (Game.player.x - Panel.getOffX()) - enemyX;
-        double offY = (Game.player.y - Panel.getOffY()) - enemyY;
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
 
         double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
         offX /= distance;
         offY /= distance;
 
-        offX *= 5;
-        offY *= 5;
+        x += offX * 5;
+        y += offY * 5;
 
         /*switch ((int) i) {
             case 0:
