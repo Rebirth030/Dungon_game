@@ -33,6 +33,29 @@ public class Enemy extends Entity {
         double i = Math.random() * 10;
         double a = Math.random() * 1000;
 
+        switch ((int) i) {
+            case 0:
+            case 1:
+                moveAwayPlayer();
+                break;
+            case 2:
+            case 3:
+                moveXAwayPlayer();
+                break;
+            case 4:
+            case 5:
+                moveYAwayPlayer();
+                break;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                moveToPlayer();
+            default:
+
+        }
+    }
+    public void moveToPlayer() {
         double enemyX = this.x;
         double enemyY = this.y;
 
@@ -47,55 +70,53 @@ public class Enemy extends Entity {
 
         x += offX * 5;
         y += offY * 5;
+    }
+    public void moveAwayPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
 
-        /*switch ((int) i) {
-            case 0:
-            case 1:
-                moveUp = true;
-                try {
-                    Thread.sleep((int)a);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                moveUp = false;
-                System.out.println("hoch");
-                break;
-            case 2:
-            case 3:
-                moveLeft = true;
-                try {
-                    Thread.sleep((int)a);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                moveLeft = false;
-                System.out.println("links");
-                break;
-            case 4:
-            case 5:
-                moveRight = true;
-                try {
-                    Thread.sleep((int)a);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                moveRight = false;
-                System.out.println("rechts");
-                break;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                moveDown = true;
-                try {
-                    Thread.sleep((int)a*2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                moveDown = false;
-                System.out.println("player");
-            default:
 
-        }*/
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+        offX /= distance;
+        offY /= distance;
+
+        x -= offX * 5;
+        y -= offY * 5;
+    }
+    public void moveXAwayPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+        offX /= distance;
+        offY /= distance;
+
+        x -= offX * 5;
+        y += offY * 5;
+    }
+    public void moveYAwayPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+        offX /= distance;
+        offY /= distance;
+
+        x += offX * 5;
+        y -= offY * 5;
     }
 }

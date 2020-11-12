@@ -116,6 +116,5 @@ public class Game implements Runnable {
 
 /*TODO:
     -Ki / pattern zur Steuerung der Enemys
-    -Kugeln/schuüße perfektionieren
     -Ausgang nicht mehr links laufen können
  */
