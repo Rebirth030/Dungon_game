@@ -9,7 +9,7 @@ public class Bullets {
 	private double x;
 	private double y;
 	private final double velX, velY;
-	public int width = 40, height = 40;
+	public static int width = 40, height = 40;
 	public Entity parent;
 	public static final double VELOCITY = 10D;
 

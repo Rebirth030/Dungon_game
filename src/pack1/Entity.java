@@ -67,18 +67,21 @@ public abstract class Entity {
 		velY += accY;
 		velX *= 0.9;
 		velY *= 0.9;
+
+		accX = 0;
+		accY = 0;
 		if (Math.abs(velX) <= 0.1) {
 			velX = 0;
 		}
 		if (Math.abs(velY) <= 0.1) {
 			velY = 0;
 		}
-		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, Map.mapWidth);
-		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, Map.mapHeight);
-		accX = 0;
-		accY = 0;
 
 		collide();
+
+		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, Map.mapWidth);
+		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, Map.mapHeight);
+
 	}
 
 	public Rectangle getCollider() {
@@ -104,7 +107,9 @@ public abstract class Entity {
 		return x;
 	}
 
-	public double getY() { return y; }
+	public double getY() {
+		return y;
+	}
 
 	public void collide() {
 		Rectangle entityCollider = getCollider();
@@ -113,15 +118,15 @@ public abstract class Entity {
 		wallLeft = entityCollider.intersects(Collider.wall3);
 		wallRight = entityCollider.intersects(Collider.wall4) || entityCollider.intersects(Collider.wall5);
 
-		double minX = velX,maxX = velX, minY = velY, maxY = velY;
-		if(wallAbove) minY = 0;
-		if(wallUnder) maxY = 0;
-		if(wallLeft) minX = 0;
-		if(wallRight) maxX = 0;
-
-		velX = Game.constrain(velX, minX, maxX);
-		velY = Game.constrain(velY, minY, maxY);
-
+		if (wallAbove) {
+			if (velY < 0) velY = 0;
+		} else if (wallUnder) {
+			if (velY > 0) velY = 0;
+		} else if (wallLeft) {
+			if (velX < 0) velX = 0;
+		} else if (wallRight) {
+			if (velX > 0) velX = 0;
+		}
 	}
 }
 

@@ -15,12 +15,12 @@ public class PlayerOne extends Entity {
 
 	@Override
 	public void addBullet(int x, int y) {
-		double entityX = this.x;
-		double entityY = this.y;
+		double entityX = this.x + width - width / 8d;
+		double entityY = this.y + height / 2d;
 
 
-		double offX = (x - Panel.getOffX()) - entityX;
-		double offY = (y - Panel.getOffY()) - entityY;
+		double offX = (x - Bullets.width / 2d - Panel.getOffX()) - entityX;
+		double offY = (y - Bullets.height / 2d - Panel.getOffY()) - entityY;
 
 		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
@@ -36,45 +36,48 @@ public class PlayerOne extends Entity {
 	//movement mit acc also rundere bewegungen nicht sofort stehen
 	@Override
 	public void update() {
+		SpriteAnimation s = spriteAnimation;
+
 		super.update();
 
 		if (wallAbove) {
 			moveUp = false;
-			if (velY < 0) velY = 0;
 		} else if (wallUnder) {
 			moveDown = false;
-			if (velY > 0) velY = 0;
 		} else if (wallLeft) {
 			moveLeft = false;
-			if (velX < 0) velX = 0;
 		} else if (wallRight) {
 			moveRight = false;
-			if (velX > 0) velX = 0;
 		}
 
 
-		if (moveRight && moveUp) spriteAnimation.setCurrent(spriteAnimation.movingBackRight);
-		else if (moveLeft && moveUp) spriteAnimation.setCurrent(spriteAnimation.movingBackLeft);
-		else if (moveDown) spriteAnimation.setCurrent(spriteAnimation.movingForward);
-		else if (moveUp) spriteAnimation.setCurrent(spriteAnimation.movingBack);
-		else if (moveRight) spriteAnimation.setCurrent(spriteAnimation.movingRight);
-		else if (moveLeft) spriteAnimation.setCurrent(spriteAnimation.movingLeft);
-
+		if (moveRight && moveUp) s.setCurrent(s.movingBackRight);
+		else if (moveLeft && moveUp) s.setCurrent(s.movingBackLeft);
+		else if (moveRight && moveDown) s.setCurrent(s.movingRight);
+		else if (moveLeft && moveDown) s.setCurrent(s.movingLeft);
+		else if (moveDown) s.setCurrent(s.movingForward);
+		else if (moveUp) s.setCurrent(s.movingBack);
+		else if (moveRight) s.setCurrent(s.movingRight);
+		else if (moveLeft) s.setCurrent(s.movingLeft);
 
 		if (velX == 0 && velY == 0) {
-			if (spriteAnimation.current == spriteAnimation.movingBackRight) {
-				spriteAnimation.setCurrent(spriteAnimation.standingBackRight);
-			} else if (spriteAnimation.current == spriteAnimation.movingBackLeft) {
-				spriteAnimation.setCurrent(spriteAnimation.standingBackLeft);
-			} else if (spriteAnimation.current == spriteAnimation.movingForward) {
-				spriteAnimation.setCurrent(spriteAnimation.standingForward);
-			} else if (spriteAnimation.current == spriteAnimation.movingLeft) {
-				spriteAnimation.setCurrent(spriteAnimation.standingLeft);
-			} else if (spriteAnimation.current == spriteAnimation.movingRight) {
-				spriteAnimation.setCurrent(spriteAnimation.standingRight);
-			} else if (spriteAnimation.current == spriteAnimation.movingBack) {
-				spriteAnimation.setCurrent(spriteAnimation.standingBack);
-			}
+			if (s.current == s.movingBackRight)
+				s.setCurrent(s.standingBackRight);
+			else if (s.current == s.movingBackLeft)
+				s.setCurrent(s.standingBackLeft);
+			else if (moveRight && moveDown)
+				s.setCurrent(s.standingRight);
+			else if (moveLeft && moveDown)
+				s.setCurrent(s.standingLeft);
+			else if (s.current == s.movingForward)
+				s.setCurrent(s.standingForward);
+			else if (s.current == s.movingLeft)
+				s.setCurrent(s.standingLeft);
+			else if (s.current == s.movingRight)
+				s.setCurrent(s.standingRight);
+			else if (s.current == s.movingBack)
+				s.setCurrent(s.standingBack);
+
 		}
 		collide();
 		if (getCollider().intersects(Collider.exit) && Map.enemyCounter == 0 && Map.levelCounter == 0) {
@@ -89,8 +92,8 @@ public class PlayerOne extends Entity {
 				Map.levelCounter = 1;
 				//Game.player.PlayerOne(0,0); // 0,0 nur testweise
 			}
-
 		}
+
 
 	}
 }
