@@ -33,7 +33,7 @@ public class Enemy extends Entity {
         double i = Math.random() * 10;
         double a = Math.random() * 1000;
 
-        switch ((int) i) {
+        /*switch ((int) i) {
             case 0:
             case 1:
                 moveAwayPlayer();
@@ -53,7 +53,7 @@ public class Enemy extends Entity {
                 moveToPlayer();
             default:
 
-        }
+        }*/
     }
     public void moveToPlayer() {
         double enemyX = this.x;
@@ -75,7 +75,6 @@ public class Enemy extends Entity {
         double enemyX = this.x;
         double enemyY = this.y;
 
-
         double offX = Game.player.getX() - enemyX;
         double offY = Game.player.getY() - enemyY;
 
@@ -84,8 +83,8 @@ public class Enemy extends Entity {
         offX /= distance;
         offY /= distance;
 
-        x -= offX * 5;
-        y -= offY * 5;
+        x += offX * -5;
+        y += offY * -5;
     }
     public void moveXAwayPlayer() {
         double enemyX = this.x;
@@ -100,7 +99,7 @@ public class Enemy extends Entity {
         offX /= distance;
         offY /= distance;
 
-        x -= offX * 5;
+        x += offX * -5;
         y += offY * 5;
     }
     public void moveYAwayPlayer() {
@@ -117,6 +116,6 @@ public class Enemy extends Entity {
         offY /= distance;
 
         x += offX * 5;
-        y -= offY * 5;
+        y += offY * -5;
     }
 }

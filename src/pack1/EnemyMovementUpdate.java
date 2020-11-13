@@ -1,6 +1,6 @@
 package pack1;
 
-public class EnemyMovementUpdate implements Runnable{
+public class EnemyMovementUpdate extends Thread{
     @Override
     public void run() {
         long timestamp;
