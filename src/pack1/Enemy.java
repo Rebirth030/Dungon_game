@@ -1,6 +1,5 @@
 package pack1;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Enemy extends Entity {
@@ -8,6 +7,7 @@ public class Enemy extends Entity {
 
     public Enemy(double x, double y) {
         super(SpriteAnimation.enemyAnimation, x, y);
+        width = 250;
         livePoints = 8;
         spriteAnimation.setCurrent(spriteAnimation.movingForward);
     }
@@ -15,6 +15,10 @@ public class Enemy extends Entity {
     @Override
     public void update() {
         super.update();
+        while (moveToPlayer) moveToPlayer();
+        while (moveBothAwayFromPlayer) moveAwayRelativeToPlayer();
+        while (moveYAwayFromPlayer) moveYAwayRelativToPlayer();
+        while (moveXAwayFromPlayer) moveXAwayRelativToPlayer();
         if (livePoints == 0) {
             enemies.remove(this);
             alive = false;
@@ -30,31 +34,35 @@ public class Enemy extends Entity {
     }
 
     public void movement() {
-        double i = Math.random() * 10;
-        double a = Math.random() * 1000;
+        double i = Math.random() * 100;
+        double a = Math.random() * 100;
 
-        /*switch ((int) i) {
-            case 0:
-            case 1:
-                moveAwayPlayer();
-                break;
-            case 2:
-            case 3:
-                moveXAwayPlayer();
-                break;
-            case 4:
-            case 5:
-                moveYAwayPlayer();
-                break;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                moveToPlayer();
-            default:
+        if (i < 20) {
+            if (a < 20) {
+                moveBothAwayFromPlayer = true;
+                moveXAwayFromPlayer = false;
+                moveYAwayFromPlayer = false;
+                moveToPlayer = false;
+            } else if (a > 20 && a < 40) {
+                moveXAwayFromPlayer = true;
+                moveBothAwayFromPlayer = false;
+                moveYAwayFromPlayer = true;
+                moveToPlayer = false;
+            } else if (a > 40 && a < 60) {
+                moveYAwayFromPlayer = true;
+                moveBothAwayFromPlayer = false;
+                moveXAwayFromPlayer = false;
+                moveToPlayer = false;
+            } else if (a > 60) {
+                moveToPlayer = true;
+                moveBothAwayFromPlayer = false;
+                moveXAwayFromPlayer = false;
+                moveYAwayFromPlayer = true;
+            }
+        }
 
-        }*/
     }
+
     public void moveToPlayer() {
         double enemyX = this.x;
         double enemyY = this.y;
@@ -68,10 +76,11 @@ public class Enemy extends Entity {
         offX /= distance;
         offY /= distance;
 
-        x += offX * 5;
-        y += offY * 5;
+        x += offX * (speed - 1);
+        y += offY * (speed - 1);
     }
-    public void moveAwayPlayer() {
+
+    public void moveAwayRelativeToPlayer() {
         double enemyX = this.x;
         double enemyY = this.y;
 
@@ -83,26 +92,11 @@ public class Enemy extends Entity {
         offX /= distance;
         offY /= distance;
 
-        x += offX * -5;
-        y += offY * -5;
+        x += offX * 1 - (speed - 1.25);
+        y += offY * 1 - (speed - 1.25);
     }
-    public void moveXAwayPlayer() {
-        double enemyX = this.x;
-        double enemyY = this.y;
 
-
-        double offX = Game.player.getX() - enemyX;
-        double offY = Game.player.getY() - enemyY;
-
-        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
-
-        offX /= distance;
-        offY /= distance;
-
-        x += offX * -5;
-        y += offY * 5;
-    }
-    public void moveYAwayPlayer() {
+    public void moveXAwayRelativToPlayer() {
         double enemyX = this.x;
         double enemyY = this.y;
 
@@ -115,7 +109,24 @@ public class Enemy extends Entity {
         offX /= distance;
         offY /= distance;
 
-        x += offX * 5;
-        y += offY * -5;
+        x += offX * -(speed - 1.25);
+        y += offY * (speed - 1.25);
+    }
+
+    public void moveYAwayRelativToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+
+        offX /= distance;
+        offY /= distance;
+
+        x += offX * (speed - 1.25);
+        y += offY * -(speed - 1.25);
     }
 }

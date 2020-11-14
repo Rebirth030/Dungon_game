@@ -38,7 +38,7 @@ public class InitSpriteAnimation {
 	}
 
 	private static void initEnemyAnimation() throws IOException {
-		Image[] imageArrays = new Image[14];
+		Image[] imageArrays = new Image[21];
 
 		for (int i = 1; i <= imageArrays.length; i++) {
 			imageArrays[i - 1] = ImageIO.read(new File("rsc/enemy1/Enemy_first" + i + ".png"));
