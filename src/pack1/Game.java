@@ -20,6 +20,9 @@ public class Game implements Runnable {
      */
     public static final int FPS = 60;
 
+    static int shake = 0;
+    static int currentShake = 0;
+
 
     /**
      * Die maximale Zeit für einen durchgang des Threadswird auf {@value} festgelegt in der Variable maxLoopTime.
@@ -100,10 +103,10 @@ public class Game implements Runnable {
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
+
+        if(!player.alive) running = false;
     }
-    public static long getMaxLoopTime() {
-        return getMaxLoopTime;
-    }
+    public static long getMaxLoopTime() { return getMaxLoopTime; }
 
     public static boolean isRunning() {
         return running;
@@ -115,6 +118,5 @@ public class Game implements Runnable {
 
 
 /*TODO:
-    -Ki / pattern zur Steuerung der Enemys
     -Ausgang nicht mehr links laufen können
  */

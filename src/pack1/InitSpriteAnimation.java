@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class InitSpriteAnimation {
+	static Image[] healthImages = new Image[7];
 
 	private static void initPlayerAnimation() throws IOException {
 		String[] directions = new String[]{"forward", "left", "right", "back", "backLeft", "BackRight",
@@ -65,9 +66,18 @@ public class InitSpriteAnimation {
 		try {
 			initPlayerAnimation();
 			initEnemyAnimation();
+			initHealthAnimation();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Image Error");
 		}
+	}
+	private static void initHealthAnimation() throws IOException {
+		int k=0;
+		for (int i = 7; i >= 1; i--) {
+			healthImages[k] = ImageIO.read(new File("rsc/player/lifePoints" + i + ".png"));
+			k++;
+		}
+
 	}
 }

@@ -1,6 +1,7 @@
 package pack1;
 
 public class PlayerOne extends Entity {
+	int invincible = 0;
 
 	public PlayerOne() {
 		this(564, 782);
@@ -8,7 +9,7 @@ public class PlayerOne extends Entity {
 
 	public PlayerOne(double x, double y) {
 		super(SpriteAnimation.playerAnimation, x, y);
-		livePoints = 5;
+		livePoints = 6;
 
 		spriteAnimation.setCurrent(spriteAnimation.standingRight);
 	}
@@ -33,7 +34,6 @@ public class PlayerOne extends Entity {
 		bullets.add(new Bullets(this, entityX, entityY, offX, offY));
 	}
 
-	//movement mit acc also rundere bewegungen nicht sofort stehen
 	@Override
 	public void update() {
 		SpriteAnimation s = spriteAnimation;
@@ -80,7 +80,7 @@ public class PlayerOne extends Entity {
 
 		}
 		collide();
-		if (getCollider().intersects(Collider.exit) && Map.enemyCounter == 0 && Map.levelCounter == 0) {
+		if (getCollider().intersects(exit) && Map.enemyCounter == 0 && Map.levelCounter == 0) {
 			wallAbove = true;
 			wallUnder = true;
 			wallLeft = true;
@@ -93,7 +93,18 @@ public class PlayerOne extends Entity {
 				//Game.player.PlayerOne(0,0); // 0,0 nur testweise
 			}
 		}
+		if(invincible > 0) invincible--;
+		System.out.println(livePoints);
 
+		if(livePoints <=0) alive = false;
 
+	}
+
+	public void damage(int damage){
+		if(invincible == 0 && alive) {
+			livePoints -= damage;
+			invincible = 100;
+			Game.shake = 4;
+		}
 	}
 }

@@ -14,6 +14,13 @@ public abstract class Entity {
 	protected int livePoints;
 	protected SpriteAnimation spriteAnimation;
 
+	static final Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
+	static final Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
+	static final Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
+	static final Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
+	static final Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
+	static final Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
+
 	protected static ArrayList<Entity> entities = new ArrayList<>();
 	protected ArrayList<Bullets> bullets = new ArrayList<>();
 
@@ -34,8 +41,6 @@ public abstract class Entity {
 
 	public void hit() {
 		livePoints--;
-		/*Panel.setOffX(Panel.getOffX() +2000);
-		Panel.setOffY(Panel.getOffX() -2000);*/
 	}
 
 	public void addBullet(int x, int y) {
@@ -113,10 +118,10 @@ public abstract class Entity {
 
 	public void collide() {
 		Rectangle entityCollider = getCollider();
-		wallAbove = entityCollider.intersects(Collider.wall1);
-		wallUnder = entityCollider.intersects(Collider.wall2);
-		wallLeft = entityCollider.intersects(Collider.wall3);
-		wallRight = entityCollider.intersects(Collider.wall4) || entityCollider.intersects(Collider.wall5);
+		wallAbove = entityCollider.intersects(wall1);
+		wallUnder = entityCollider.intersects(wall2);
+		wallLeft = entityCollider.intersects(wall3);
+		wallRight = entityCollider.intersects(wall4) || entityCollider.intersects(wall5);
 
 		if (wallAbove) {
 			if (velY < 0) velY = 0;

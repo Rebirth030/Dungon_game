@@ -7,6 +7,7 @@ public class SpriteAnimation {
 
 	public static SpriteAnimation playerAnimation;
 	public static SpriteAnimation enemyAnimation;
+	public static SpriteAnimation healthAnimation;
 
 	private int counter = 0;
 
