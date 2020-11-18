@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Entity {
 
 	protected double velX, velY, accX, accY, x, y;
-	protected static final double speed = 3;
+	protected double speed = 3;
 	protected int width = 100;
 	protected int height = 175;
 	protected boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false, moveToPlayer = false, moveBothAwayFromPlayer = false, moveYAwayFromPlayer = false, moveXAwayFromPlayer = false;

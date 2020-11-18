@@ -8,8 +8,8 @@ import java.util.Timer;
  * Sie implementiert die Klasse Runnable.
  *
  * @author Julian Martens
- *  *
- *  * @version 1.0
+ * *
+ * * @version 1.0
  */
 
 
@@ -60,11 +60,6 @@ public class Game implements Runnable {
         }
     }
 
-    public static void addEnemyClass_1() {
-        Enemy.enemies.add(new Enemy(2000, 300));
-        Enemy.enemies.add(new Enemy(2000, 500));
-    }
-
     /**
      * Guckt, wenn vel < min gibt min aus, wenn vel> max gitb max aus sonst gibt vel zurück.
      * guckt quasi das ein rückgabe wert nicht größer als die zwei mitgegebenen werte wird.
@@ -87,8 +82,6 @@ public class Game implements Runnable {
         Game game = new Game();
         new Thread(game).start();
 
-        addEnemyClass_1();
-
         Gui.createGui();
         Repaint render = new Repaint();
         new Thread(render).start();
@@ -104,12 +97,19 @@ public class Game implements Runnable {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
 
-        if(!player.alive) running = false;
+        if (!player.alive) running = false;
     }
-    public static long getMaxLoopTime() { return getMaxLoopTime; }
+
+    public static long getMaxLoopTime() {
+        return getMaxLoopTime;
+    }
 
     public static boolean isRunning() {
         return running;
+    }
+
+    public static double getRandomNumber() {
+        return Math.random();
     }
 
 }

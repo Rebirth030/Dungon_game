@@ -37,10 +37,10 @@ public class Panel extends JPanel {
         g.drawImage(Map.getMap(), 0, 0, Map.mapWidth, Map.mapHeight, null);
         Game.player.show(g);
         for (int i = 0; i < Enemy.enemies.size(); i++) Enemy.enemies.get(i).show(g);
-        if(Game.player.livePoints >= 0) g.drawImage(InitSpriteAnimation.healthImages[Game.player.livePoints],-(int)offX,-(int)offY,null);
+        if(Game.player.livePoints >= 0) g.drawImage(InitSpriteAnimation.healthImages[(int) Game.constrain(Game.player.livePoints,0,6)],-(int)offX,-(int)offY,null);
         if(!Game.player.alive) {
             try {
-                g.drawImage(ImageIO.read(new File("rsc/GameOver.png")),-(int)offX,-(int)offY,null );
+                g.drawImage(ImageIO.read(new File("rsc/GameOver.png")),-(int)offX,-(int)offY, getWidth(), getHeight(), null );
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("GameOver could not be drawn");

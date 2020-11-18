@@ -10,7 +10,6 @@ public class Map {
     static int levelCounter = 0;
 
     static int mapWidth = 3840, mapHeight = 2160;
-    static int enemyCounter = 8;
     private static Image[] level;
 
     static void createMap() {

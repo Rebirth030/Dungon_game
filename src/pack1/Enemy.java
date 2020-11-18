@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Enemy extends Entity {
     public static ArrayList<Enemy> enemies = new ArrayList<>();
+    //public double speed = 5;
 
     public Enemy(double x, double y) {
         super(SpriteAnimation.enemyAnimation, x, y);
         width = 175;
         livePoints = 8;
+        speed = 5;
         spriteAnimation.setCurrent(spriteAnimation.movingForward);
     }
 
@@ -37,8 +39,8 @@ public class Enemy extends Entity {
     }
 
     public void movement() {
-        double i = Math.random() * 100;
-        double a = Math.random() * 100;
+        double i = Game.getRandomNumber() * 100;
+        double a = Game.getRandomNumber() * 100;
 
         if (i < 2) {
             if (a < 20) {
