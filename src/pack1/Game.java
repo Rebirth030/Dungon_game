@@ -82,7 +82,9 @@ public class Game implements Runnable {
         Game game = new Game();
         new Thread(game).start();
 
-        Gui.createGui();
+        while(running) Gui.createGui();
+
+
         Repaint render = new Repaint();
         new Thread(render).start();
 
@@ -119,4 +121,6 @@ public class Game implements Runnable {
 
 /*TODO:
     -Ausgang nicht mehr links laufen können
+    -nicht mehr bewegen wenn tot
+    -icon desing und einfügen
  */

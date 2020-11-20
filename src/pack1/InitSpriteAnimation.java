@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class InitSpriteAnimation {
 	static Image[] healthImages = new Image[7];
+	static Image GameOver;
 
 	private static void initPlayerAnimation() throws IOException {
 		String[] directions = new String[]{"forward", "left", "right", "back", "backLeft", "BackRight",
@@ -36,6 +37,12 @@ public class InitSpriteAnimation {
 				imageArrays[10],
 				imageArrays[11]
 		);
+		try {
+			GameOver = ImageIO.read(new File("rsc/GameOver.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("GameOver could not be drawn");
+		}
 	}
 
 	private static void initEnemyAnimation() throws IOException {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Enemy extends Entity {
     public static ArrayList<Enemy> enemies = new ArrayList<>();
-    //public double speed = 5;
 
     public Enemy(double x, double y) {
         super(SpriteAnimation.enemyAnimation, x, y);

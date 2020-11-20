@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class Panel extends JPanel {
 
-
     private static double offX = 0D;
     private static double offY = 0D;
 
@@ -37,14 +36,10 @@ public class Panel extends JPanel {
         g.drawImage(Map.getMap(), 0, 0, Map.mapWidth, Map.mapHeight, null);
         Game.player.show(g);
         for (int i = 0; i < Enemy.enemies.size(); i++) Enemy.enemies.get(i).show(g);
-        if(Game.player.livePoints >= 0) g.drawImage(InitSpriteAnimation.healthImages[(int) Game.constrain(Game.player.livePoints,0,6)],-(int)offX,-(int)offY,null);
-        if(!Game.player.alive) {
-            try {
-                g.drawImage(ImageIO.read(new File("rsc/GameOver.png")),-(int)offX,-(int)offY, getWidth(), getHeight(), null );
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("GameOver could not be drawn");
-            }
+        if (Game.player.livePoints >= 0)
+            g.drawImage(InitSpriteAnimation.healthImages[(int) Game.constrain(Game.player.livePoints, 0, 6)], -(int) offX, -(int) offY, null);
+        if (!Game.player.alive) {
+            g.drawImage(InitSpriteAnimation.GameOver, -(int) offX, -(int) offY, getWidth(), getHeight(), null);
         }
 
         //g.fillRect(Collider.wall5.x, Collider.wall5.y, Collider.wall5.width, Collider.wall5.height);

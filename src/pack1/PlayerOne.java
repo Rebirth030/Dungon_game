@@ -89,14 +89,19 @@ public class PlayerOne extends Entity {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                Map.levelCounter = 1;
-                //Game.player.PlayerOne(0,0); // 0,0 nur testweise
             }
+            Map.levelCounter++;
+            x = 35;
+            y = 966;
+
+            EnemyUpdate.addEnemyClass_1();
         }
         if (invincible > 0) invincible--;
         System.out.println(livePoints);
 
         if (livePoints <= 0) alive = false;
+
+        System.out.println(x+","+y);
 
     }
 
