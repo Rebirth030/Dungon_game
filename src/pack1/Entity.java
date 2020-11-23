@@ -5,134 +5,206 @@ import java.util.ArrayList;
 
 public abstract class Entity {
 
-	protected double velX, velY, accX, accY, x, y;
-	protected double speed = 3;
-	protected int width = 100;
-	protected int height = 175;
-	protected boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false, moveToPlayer = false, moveBothAwayFromPlayer = false, moveYAwayFromPlayer = false, moveXAwayFromPlayer = false;
-	protected boolean alive;
-	protected int livePoints;
-	protected SpriteAnimation spriteAnimation;
+    protected double velX, velY, accX, accY, x, y;
+    protected int speed = 3;
+    protected int width = 100;
+    protected int height = 175;
+    protected boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false, moveToPlayer = false, moveBothAwayFromPlayer = false, moveYAwayFromPlayer = false, moveXAwayFromPlayer = false;
+    protected boolean alive;
+    protected int livePoints;
+    protected SpriteAnimation spriteAnimation;
 
-	static final Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
-	static final Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
-	static final Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
-	static final Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
-	static final Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
-	static final Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
+    protected static final Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
+    protected static final Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
+    protected static final Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
+    protected static final Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
+    protected static final Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
+    protected static final Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
 
-	protected static ArrayList<Entity> entities = new ArrayList<>();
-	protected ArrayList<Bullets> bullets = new ArrayList<>();
-
-
-	public Entity(SpriteAnimation spriteAnimation, double x, double y) {
-		this.spriteAnimation = spriteAnimation;
-		this.x = x;
-		this.y = y;
-		velX = 0;
-		velY = 0;
-		accX = 0;
-		accY = 0;
-		alive = true;
-		livePoints = 8;
-
-		entities.add(this);
-	}
-
-	public void hit() {
-		livePoints--;
-	}
-
-	public void addBullet(int x, int y) {
-		double entityX = this.x;
-		double entityY = this.y;
+    protected static ArrayList<Entity> entities = new ArrayList<>();
+    protected ArrayList<Bullets> bullets = new ArrayList<>();
 
 
-		double offX = (x - Panel.getOffX()) - entityX;
-		double offY = (y - Panel.getOffX()) - entityY;
+    public Entity(SpriteAnimation spriteAnimation, double x, double y) {
+        this.spriteAnimation = spriteAnimation;
+        this.x = x;
+        this.y = y;
+        velX = 0;
+        velY = 0;
+        accX = 0;
+        accY = 0;
+        alive = true;
+        livePoints = 8;
 
-		double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+        entities.add(this);
+    }
 
-		offX /= distance;
-		offY /= distance;
+    public void hit() {
+        livePoints--;
+    }
 
-		offX *= Bullets.VELOCITY;
-		offY *= Bullets.VELOCITY;
-
-		bullets.add(new Bullets(this, entityX, entityY, offX, offY));
-	}
-
-	public void update() {
-		for (int i = 0; i < bullets.size(); i++) bullets.get(i).update();
+    public void addBullet(int x, int y) {
+        double entityX = this.x;
+        double entityY = this.y;
 
 
-		accX = (moveLeft ? -speed : (moveRight ? speed : 0)) / 5f;
-		accY = (moveUp ? -speed : (moveDown ? speed : 0)) / 5f;
-		velX += accX;
-		velY += accY;
-		velX *= 0.9;
-		velY *= 0.9;
+        double offX = (x - Panel.getOffX()) - entityX;
+        double offY = (y - Panel.getOffX()) - entityY;
 
-		accX = 0;
-		accY = 0;
-		if (Math.abs(velX) <= 0.1) {
-			velX = 0;
-		}
-		if (Math.abs(velY) <= 0.1) {
-			velY = 0;
-		}
+        double distance = Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
 
-		collide();
+        offX /= distance;
+        offY /= distance;
 
-		x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 0, Map.mapWidth);
-		y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 0, Map.mapHeight);
+        offX *= Bullets.VELOCITY;
+        offY *= Bullets.VELOCITY;
 
-	}
+        bullets.add(new Bullets(this, entityX, entityY, offX, offY));
+    }
 
-	public Rectangle getCollider() {
-		return new Rectangle((int) x, (int) y, width, height);
-	}
+    public void update() {
+        for (int i = 0; i < bullets.size(); i++) bullets.get(i).update();
 
-	public void show(Graphics g) {
-		if (spriteAnimation != null)
-			g.drawImage(spriteAnimation.getCurrent(), (int) x, (int) y, width, height, null);
-		else {
-			g.setColor(Color.WHITE);
-			g.fillRect((int) x, (int) y, width, height);
-		}
-		for (int i = 0; i < bullets.size(); i++) bullets.get(i).draw((Graphics2D) g);
-	}
 
-	public void updateAnimation() {
-		if (spriteAnimation != null)
-			spriteAnimation.update();
-	}
+        accX = (moveLeft ? -speed : (moveRight ? speed : 0)) / 5f;
+        accY = (moveUp ? -speed : (moveDown ? speed : 0)) / 5f;
+        velX += accX;
+        velY += accY;
+        velX *= 0.9;
+        velY *= 0.9;
 
-	public double getX() {
-		return x;
-	}
+        accX = 0;
+        accY = 0;
+        if (Math.abs(velX) <= 0.1) {
+            velX = 0;
+        }
+        if (Math.abs(velY) <= 0.1) {
+            velY = 0;
+        }
 
-	public double getY() {
-		return y;
-	}
+        collide();
 
-	public void collide() {
-		Rectangle entityCollider = getCollider();
-		wallAbove = entityCollider.intersects(wall1);
-		wallUnder = entityCollider.intersects(wall2);
-		wallLeft = entityCollider.intersects(wall3);
-		wallRight = entityCollider.intersects(wall4) || entityCollider.intersects(wall5);
+        x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 35, Map.mapWidth - 155);
+        y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 100, Map.mapHeight - 80);
 
-		if (wallAbove) {
-			if (velY < 0) velY = 0;
-		} else if (wallUnder) {
-			if (velY > 0) velY = 0;
-		} else if (wallLeft) {
-			if (velX < 0) velX = 0;
-		} else if (wallRight) {
-			if (velX > 0) velX = 0;
-		}
-	}
+    }
+
+    public Rectangle getCollider() {
+        return new Rectangle((int) x, (int) y, width, height);
+    }
+
+    public void show(Graphics g) {
+        if (spriteAnimation != null)
+            g.drawImage(spriteAnimation.getCurrent(), (int) x, (int) y, width, height, null);
+        else {
+            g.setColor(Color.WHITE);
+            g.fillRect((int) x, (int) y, width, height);
+        }
+        for (int i = 0; i < bullets.size(); i++) bullets.get(i).draw((Graphics2D) g);
+    }
+
+    public void updateAnimation() {
+        if (spriteAnimation != null)
+            spriteAnimation.update();
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void collide() {
+        Rectangle entityCollider = getCollider();
+        wallAbove = entityCollider.intersects(wall1);
+        wallUnder = entityCollider.intersects(wall2);
+        wallLeft = entityCollider.intersects(wall3);
+        wallRight = entityCollider.intersects(wall4) || entityCollider.intersects(wall5);
+        wallRight = entityCollider.intersects(exit) && Enemy.enemies.size() > 0 && EnemyUpdate.waveCounter < 3;
+
+        if (wallAbove) {
+            if (velY < 0) velY = 0;
+        } else if (wallUnder) {
+            if (velY > 0) velY = 0;
+        } else if (wallLeft) {
+            if (velX < 0) velX = 0;
+        } else if (wallRight) {
+            if (velX > 0) velX = 0;
+        }
+    }
+
+    public double getDistanceToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        return Math.sqrt(Math.pow(Math.abs(offX), 2D) + Math.pow(Math.abs(offY), 2D));
+    }
+
+    public void moveToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        offX /= getDistanceToPlayer();
+        offY /= getDistanceToPlayer();
+
+        x += offX * speed;
+        y += offY * speed;
+    }
+
+    public void moveAwayRelativeToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        offX /= getDistanceToPlayer();
+        offY /= getDistanceToPlayer();
+
+        x += offX * -(speed - 1.5);
+        y += offY * -(speed - 1.5);
+    }
+
+    public void moveXAwayRelativeToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+        offX /= getDistanceToPlayer();
+        offY /= getDistanceToPlayer();
+
+        x += offX * -(speed - 1.25);
+        y += offY * (speed - 1.25);
+    }
+
+    public void moveYAwayRelativeToPlayer() {
+        double enemyX = this.x;
+        double enemyY = this.y;
+
+
+        double offX = Game.player.getX() - enemyX;
+        double offY = Game.player.getY() - enemyY;
+
+
+        offX /= getDistanceToPlayer();
+        offY /= getDistanceToPlayer();
+
+        x += offX * (speed - 1.25);
+        y += offY * -(speed - 1.25);
+    }
 }
 
 

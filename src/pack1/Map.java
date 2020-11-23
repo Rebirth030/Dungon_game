@@ -17,7 +17,8 @@ public class Map {
         try {
             level = new Image[]{
                     ImageIO.read(new File("rsc/dungonBackground.png")),
-                    ImageIO.read(new File("rsc/Dungon background2.png"))
+                    ImageIO.read(new File("rsc/Dungon background2.png")),
+                    ImageIO.read(new File("rsc/Dungon background3.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
 public class KeyHandler implements KeyListener {
+    public boolean activatedCheats = false;
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -12,18 +14,21 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (e.getKeyCode() == KeyEvent.VK_W) {
+        if (e.getKeyCode() == KeyEvent.VK_W && Game.player.alive) {
             Game.player.moveUp = true;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_S) {
+        } else if (e.getKeyCode() == KeyEvent.VK_S && Game.player.alive) {
             Game.player.moveDown = true;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_D) {
+        } else if (e.getKeyCode() == KeyEvent.VK_D && Game.player.alive) {
             Game.player.moveRight = true;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_A) {
+        } else if (e.getKeyCode() == KeyEvent.VK_A && Game.player.alive) {
             Game.player.moveLeft = true;
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_P) activatedCheats = true;
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
+        if (e.getKeyCode() == KeyEvent.VK_E && activatedCheats) Game.player.livePoints = 6;
+
+
     }
 
     @Override

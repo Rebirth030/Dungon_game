@@ -16,9 +16,10 @@ public class Gui {
 		jf.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		jf.setUndecorated(true);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setIconImage(InitSpriteAnimation.getIcon());
 		jf.setLocationRelativeTo(null);
 		jf.setLayout(null);
-		jf.setTitle("Dungon Game");
+		jf.setTitle("Cartaphilus");
 		jf.setResizable(true);
 		jf.addKeyListener(new KeyHandler());
 		jf.requestFocus();

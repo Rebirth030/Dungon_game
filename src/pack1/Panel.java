@@ -35,6 +35,7 @@ public class Panel extends JPanel {
 
         g.drawImage(Map.getMap(), 0, 0, Map.mapWidth, Map.mapHeight, null);
         Game.player.show(g);
+        //if (Map.levelCounter == 1) PlayerOne.boss.show(g);
         for (int i = 0; i < Enemy.enemies.size(); i++) Enemy.enemies.get(i).show(g);
         if (Game.player.livePoints >= 0)
             g.drawImage(InitSpriteAnimation.healthImages[(int) Game.constrain(Game.player.livePoints, 0, 6)], -(int) offX, -(int) offY, null);
@@ -42,7 +43,7 @@ public class Panel extends JPanel {
             g.drawImage(InitSpriteAnimation.GameOver, -(int) offX, -(int) offY, getWidth(), getHeight(), null);
         }
 
-        //g.fillRect(Collider.wall5.x, Collider.wall5.y, Collider.wall5.width, Collider.wall5.height);
+        g.fillRect(Entity.wall2.x,Entity.wall2.y, Entity.wall2.width, Entity.wall2.height);
         if (Game.shake == Game.currentShake) Game.shake = 0;
         if (Game.shake > Game.currentShake) Game.currentShake++;
         else if (Game.shake < Game.currentShake) Game.currentShake--;

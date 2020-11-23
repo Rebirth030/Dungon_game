@@ -2,6 +2,7 @@ package pack1;
 
 public class PlayerOne extends Entity {
     int invincible = 0;
+    //public static EnemyBoss boss;
 
     public PlayerOne() {
         this(564, 782);
@@ -80,7 +81,7 @@ public class PlayerOne extends Entity {
 
         }
         collide();
-        if (getCollider().intersects(exit) && Enemy.enemies.size() == 0 && Map.levelCounter == 0) {
+        if (getCollider().intersects(exit) && Enemy.enemies.size() == 0 && Map.levelCounter <= 1) {
             wallAbove = true;
             wallUnder = true;
             wallLeft = true;
@@ -93,15 +94,15 @@ public class PlayerOne extends Entity {
             Map.levelCounter++;
             x = 35;
             y = 966;
+            EnemyUpdate.resetWaveCounter();
+            //boss = new EnemyBoss(Game.getRandomNumber() * 3840, Game.getRandomNumber() * 2160);
 
-            EnemyUpdate.addEnemyClass_1();
         }
         if (invincible > 0) invincible--;
-        System.out.println(livePoints);
 
         if (livePoints <= 0) alive = false;
 
-        System.out.println(x+","+y);
+        System.out.println(Enemy.enemies.size()+","+EnemyUpdate.waveCounter);
 
     }
 

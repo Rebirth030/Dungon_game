@@ -4,42 +4,36 @@ package pack1;
 import java.util.Timer;
 
 /**
- * Die Game Klasse, die das Spiel startet.
- * Sie implementiert die Klasse Runnable.
+ * The Game class starts the game.
+ * It implements the interface Runnable.
  *
  * @author Julian Martens
  * *
- * * @version 1.0
+ * * @version 2.1
  */
 
 
 public class Game implements Runnable {
-
-    /**
-     * Die Variable FPS, legt die Frames Per Second fest, die erreicht werden sollen. Die FPS werden auf {@value} festgelegt.
-     */
     public static final int FPS = 60;
 
     static int shake = 0;
     static int currentShake = 0;
-
-
-    /**
-     * Die maximale Zeit für einen durchgang des Threadswird auf {@value} festgelegt in der Variable maxLoopTime.
-     */
     private static final long getMaxLoopTime = 1000 / FPS;
     private static boolean running = true;
     static PlayerOne player;
 
-    @Override
     /**
-     * Die run Methode aus der Runnable Klasse, die von einem Thread ausgeführt wird, ruft in der PlayerOne Klasse die "update" Funktion aus.
-     *
-     * Die Variable oldTimestamp speichert die Startzeit des auszuführenden codes in milisekunden.
-     * Die Variable timestamp speichert die Zeit, nachdem die "update" Methode der Klasse PlayerOne, ausgeführt wurde.
-     *
-     * Wenn die Differenz von oldTimestamp und timestamp, also die zeit, die es braucht die "update" Funktion aus zu führen, größer wird als maxLoopTime, wird die ausführung von "update" abgebrochen.
+     * The run Method from the interface Runnable, can be executed by an Thread .
+     * It will be executed, while the variable running is true.
+     * <p>
+     * The variable timestamp stores the start time from the execution of the run method.
+     * The variable oldTimestamp stores the time after the execution of the run method.
+     * If the difference between the two time stamps is higher than the maxLoopTime, the following code will also be executed.
+     * If this is the case, the Thread tries to run the sleep method for the rest of the time until maxLoopTime is reached.
+     * <p>
+     * Between the timestamp and oldTimestamp the update method from the PlayerOne player is called.
      */
+    @Override
     public void run() {
         long timestamp;
         long oldTimestamp;
@@ -61,28 +55,55 @@ public class Game implements Runnable {
     }
 
     /**
-     * Guckt, wenn vel < min gibt min aus, wenn vel> max gitb max aus sonst gibt vel zurück.
-     * guckt quasi das ein rückgabe wert nicht größer als die zwei mitgegebenen werte wird.
+     * The constrain method gets three parameters an looks if the first value is within the min and max parameter.
      *
-     * @param val
-     * @param min
-     * @param max
-     * @return
+     * @param val is the value of something.
+     * @param min is the number, the value should at least have.
+     * @param max is the number, the value something should have maximal.
+     * @return the value if its within the range of max and min else it return either max or min.
      */
     public static double constrain(double val, double min, double max) {
         return Math.min(Math.max(val, min), max);
     }
 
+    /**
+     *
+     * The main method that starts the whole game.
+     * <p>
+     * At first it executes the init method in InitSpriteAnimation.
+     * At second it calls the createMap method from the class Map.
+     * At third the method createGui from Gui is called.
+     * <p>
+     * At next the method generates an object of the class PlayerOne named player.
+     * <p>
+     * Then another object gets generated from the Game class.
+     * A new Thread gets initialized and calls the run method in Game {@link Game #run()}.
+     * <p>
+     * Then another object gets generated from the Repaint class.
+     * A new Thread gets initialized and calls the run method in Repaint {@link Repaint #run()}.
+     * <p>
+     * Then another object gets generated from the EnemyUpdate class.
+     * A new Thread gets initialized and calls the run method in EnemyUpdate {@link EnemyUpdate #run()}.
+     * <p>
+     * Then another object gets generated from the EnemyMovementUpdate class.
+     * A new Thread gets initialized and calls the run method in EnemyMovementUpdate {@link EnemyMovementUpdate #run()}.
+     * <p>
+     * The KeyHandler class gets initialized.
+     * <p>
+     * Then another object gets generated from the Timer class.
+     * A new Thread gets initialized and calls the run method in AnimationThread every 300 milliseconds {@link AnimationThread #run()}.
+     * @param args
+     */
+
     public static void main(String[] args) {
         InitSpriteAnimation.init();
         Map.createMap();
+        Gui.createGui();
 
         player = new PlayerOne();
 
         Game game = new Game();
         new Thread(game).start();
-
-        while(running) Gui.createGui();
 
 
         Repaint render = new Repaint();
@@ -98,29 +119,33 @@ public class Game implements Runnable {
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new AnimationThread(), 0, 300);
-
-        if (!player.alive) running = false;
     }
 
+    /**
+     * Passes the value of maxLoopTime along.
+     *
+     * @return the value of maxLoopTime.
+     */
     public static long getMaxLoopTime() {
         return getMaxLoopTime;
     }
 
+    /**
+     * Passes the value of isRunning along.
+     *
+     * @return the boolean value of running.
+     */
     public static boolean isRunning() {
         return running;
     }
 
+    /**
+     * Gets a random number.
+     *
+     * @return a random number of the Math class.
+     */
     public static double getRandomNumber() {
         return Math.random();
     }
 
 }
-
-
-
-
-/*TODO:
-    -Ausgang nicht mehr links laufen können
-    -nicht mehr bewegen wenn tot
-    -icon desing und einfügen
- */

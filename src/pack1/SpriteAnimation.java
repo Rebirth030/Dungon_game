@@ -1,12 +1,16 @@
 package pack1;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 
 public class SpriteAnimation {
 
 	public static SpriteAnimation playerAnimation;
 	public static SpriteAnimation enemyAnimation;
+	public static SpriteAnimation enemyBossAnimation;
 
 	private int counter = 0;
 
