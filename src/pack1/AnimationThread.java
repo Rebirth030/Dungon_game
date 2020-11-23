@@ -7,8 +7,8 @@ import java.util.TimerTask;
  * It extends the TimerTask class.
  *
  * @author Julian Martens
- * *
- * * @version 1.0
+ *
+ * @version 1.0
  */
 public class AnimationThread extends TimerTask {
 	/**
