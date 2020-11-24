@@ -67,7 +67,6 @@ public class Game implements Runnable {
     }
 
     /**
-     *
      * The main method that starts the whole game.
      * <p>
      * At first it executes the init method in InitSpriteAnimation.
@@ -92,6 +91,7 @@ public class Game implements Runnable {
      * <p>
      * Then another object gets generated from the Timer class.
      * A new Thread gets initialized and calls the run method in AnimationThread every 300 milliseconds {@link AnimationThread #run()}.
+     *
      * @param args
      */
 

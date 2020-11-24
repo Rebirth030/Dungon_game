@@ -7,21 +7,20 @@ import java.util.TimerTask;
  * It extends the TimerTask class.
  *
  * @author Julian Martens
- *
  * @version 1.0
  */
 public class AnimationThread extends TimerTask {
-	/**
-	 * The run Method from the class TimerTask, can be executed by an Timer.
-	 * It will be executed, again in a certain period.
-	 *
-	 * Every 300 milliseconds every entity in the entity list gets his updateAnimation method called.
-	 */
+    /**
+     * The run Method from the class TimerTask, can be executed by an Timer.
+     * It will be executed, again in a certain period.
+     * <p>
+     * Every 300 milliseconds every entity in the entity list gets his updateAnimation method called.
+     */
 
-	@Override
-	public void run() {
-		for (int i = 0; i < Entity.entities.size(); i++) {
-			Entity.entities.get(i).updateAnimation();
-		}
-	}
+    @Override
+    public void run() {
+        for (int i = 0; i < Entity.entities.size(); i++) {
+            Entity.entities.get(i).updateAnimation();
+        }
+    }
 }

@@ -31,14 +31,13 @@ public class Bullets {
 
     /**
      * The constructor of the Bullet class.
+     * Sets the parameters to the variables of the bullet.
      *
      * @param parent ist the entity that its coming from either the player or the enemies (later on, not now).
      * @param x      the x coordinate of the parent.
      * @param y      the y coordinate of the parent.
      * @param velX   the x coordinate of the target.
      * @param velY   the y coordinate of the target.
-     *               <p>
-     *               Sets the parameters to the variables of the bullet.
      */
 
     public Bullets(Entity parent, double x, double y, double velX, double velY) {

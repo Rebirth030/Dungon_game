@@ -1,4 +1,5 @@
 package pack1;
+
 /**
  * The EnemyUpdate class has the run method to update the enemies.
  * It implements the interface Runnable.
@@ -12,8 +13,9 @@ public class EnemyUpdate implements Runnable {
 
     /**
      * The addEnemyClass_1 method creates enemies of the Enemy class.
-     *
+     * <p>
      * The method creates 4 times, seven enemies.
+     * The waveCounter counts the wave and spawns 5 new enemies until 4 waves are done.
      */
     public static void addEnemyClass_1() {
         if (Enemy.enemies.size() == 0 && waveCounter < 4) {
@@ -23,15 +25,16 @@ public class EnemyUpdate implements Runnable {
             waveCounter++;
         }
     }
+
     /**
      * The run Method from the interface Runnable, can be executed by an Thread .
      * It will be executed, while the variable running from the class Game is true.
-     *
+     * <p>
      * The variable timestamp stores the start time from the execution of the run method.
      * The variable oldTimestamp stores the time after the execution of the run method.
      * If the difference between the two time stamps is higher than the maxLoopTime, the following code will also be executed.
      * If this is the case, the Thread tries to run the sleep method for the rest of the time until maxLoopTime is reached.
-     *
+     * <p>
      * Between the timestamp and oldTimestamp the addEnemyClass_1 method gets called and also the update method of every single enemy.
      */
     @Override

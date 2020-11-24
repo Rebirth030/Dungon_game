@@ -3,12 +3,23 @@ package pack1;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * The Gui class creates the Gui of the game.
+ *
+ * @author Julian Martens
+ * @version 1.2
+ */
 public class Gui {
 	static Panel pnl1;
 	static JFrame jf;
 
-
+	/**
+	 * creates the Gui.
+	 *
+	 * First a JFrame named jf gets added.
+	 *
+	 * I don't think there is something to miss understand in the rest of the code.
+	 */
 	public static void createGui() {
 
 		jf = new JFrame();

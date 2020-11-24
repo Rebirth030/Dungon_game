@@ -7,8 +7,8 @@ import java.io.IOException;
 
 /**
  * The class that creates the Map and has its sizes.
- * @author Julian Martens
  *
+ * @author Julian Martens
  * @version 1.3
  */
 public class Map {
@@ -36,6 +36,7 @@ public class Map {
 
     /**
      * Gets the Image of the current Map.
+     *
      * @return the background Image.
      */
     static Image getMap() {
