@@ -12,9 +12,18 @@ import java.io.IOException;
  * @version 1.3
  */
 public class Map {
+    /**
+     * The levelCounter that counts the Maps which are shown.
+     */
     static int levelCounter = 0;
 
+    /**
+     * mapWidth and mapHeight sores the Height and the width of the Background map.
+     */
     static int mapWidth = 3840, mapHeight = 2160;
+    /**
+     * Saves the pictures of the map in a Array.
+     */
     private static Image[] level;
 
     /**

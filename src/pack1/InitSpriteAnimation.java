@@ -5,6 +5,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The InitSpriteAnimation class initiates the animation.
+ *
+ * @author Julian Martens
+ * @version 1.2
+ */
 public class InitSpriteAnimation {
     /**
      * The Array for the health point Images.
@@ -66,19 +72,24 @@ public class InitSpriteAnimation {
 
     /**
      * The method initiates the enemy animation (a lot easier than the player animation).
+     * <p>
+     * First am Image Array gets instantiate named imageArray to and next it gets the 21 Enemy_First Images.
+     * Next an imageBoss Array gets the boss Image (momentarily just 1 and not in use because there is no boss yet).
+     * <p>
+     * The spriteAnimation object enemyAnimation gets the two image Array and gets more if there are more enemies.
      *
      * @throws IOException
      */
     private static void initEnemyAnimation() throws IOException {
-        Image[] imageArrays = new Image[21];
+        Image[] imageArray = new Image[21];
 
-        for (int i = 1; i <= imageArrays.length; i++) {
-            imageArrays[i - 1] = ImageIO.read(new File("rsc/enemy1/Enemy_first" + i + ".png"));
+        for (int i = 1; i <= imageArray.length; i++) {
+            imageArray[i - 1] = ImageIO.read(new File("rsc/enemy1/Enemy_first" + i + ".png"));
         }
         Image[] imageBoss = {ImageIO.read(new File("rsc/Enemy_Boss1.png"))};
 
         SpriteAnimation.enemyAnimation = new SpriteAnimation(
-                imageArrays,
+                imageArray,
                 imageBoss,
                 null,
                 null,
@@ -93,6 +104,12 @@ public class InitSpriteAnimation {
         );
     }
 
+    /**
+     * The init method initialises the other init methods.
+     * <p>
+     * The method is executed by an try catch method.
+     * It also initialises the icon image.
+     */
     public static void init() {
         try {
             initPlayerAnimation();
@@ -105,6 +122,12 @@ public class InitSpriteAnimation {
         }
     }
 
+    /**
+     * The method initialises the health point animation.
+     * The healthImages Array gets filled with the lifePoints Images.
+     *
+     * @throws IOException
+     */
     private static void initHealthAnimation() throws IOException {
         int k = 0;
         for (int i = 7; i >= 1; i--) {
@@ -114,6 +137,11 @@ public class InitSpriteAnimation {
 
     }
 
+    /**
+     * Gets the icon variable.
+     *
+     * @return the icon Image.
+     */
     public static Image getIcon() {
         return icon;
     }

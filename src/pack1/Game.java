@@ -110,15 +110,15 @@ public class Game implements Runnable {
      * Then another object gets generated from the Timer class.
      * A new Thread gets initialized and calls the run method in AnimationThread every 300 milliseconds {@link AnimationThread #run()}.
      *
-     * @param args
+     * @param args command line arguments.
      */
 
     public static void main(String[] args) {
         InitSpriteAnimation.init();
         Map.createMap();
-        Gui.createGui();
-
         player = new PlayerOne();
+
+        Gui.createGui();
 
         Game game = new Game();
         new Thread(game).start();

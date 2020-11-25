@@ -41,9 +41,6 @@ public class Bullets {
      */
     public static Image bullet;
 
-    /**
-     * Tries to set the Image of the Bullet.
-     */
     static {
         try {
             bullet = ImageIO.read(new File("rsc/player/schuss_player.png"));
