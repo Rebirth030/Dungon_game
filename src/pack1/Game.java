@@ -14,12 +14,30 @@ import java.util.Timer;
 
 
 public class Game implements Runnable {
+    /**
+     * The variable sets the targeted FPS (frames per second).
+     */
     public static final int FPS = 60;
 
+    /**
+     * The movement from the sight of the x-axis if the player gets hit.
+     */
     static int shake = 0;
+    /**
+     * A variable for the current shake, that the shake is smooth and not hard.
+     */
     static int currentShake = 0;
+    /**
+     * The maximal time that a Thread has to make execute its task.
+     */
     private static final long getMaxLoopTime = 1000 / FPS;
-    private static boolean running = true;
+    /**
+     * The variable that stores if the game is running(not really used yet).
+     */
+    private static final boolean running = true;
+    /**
+     * The PlayerOne object the player is playing with.
+     */
     static PlayerOne player;
 
     /**

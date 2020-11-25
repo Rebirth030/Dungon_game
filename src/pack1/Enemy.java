@@ -10,6 +10,9 @@ import java.util.ArrayList;
  * @version 2.3
  */
 public class Enemy extends Entity {
+    /**
+     * An ArrayList that stores all entities in the game.
+     */
     public static ArrayList<Enemy> enemies = new ArrayList<>();
 
     /**

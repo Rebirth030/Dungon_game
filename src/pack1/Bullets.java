@@ -12,15 +12,38 @@ import java.io.IOException;
  * @version 1.2
  */
 public class Bullets {
+    /**
+     * x coordinate of the Bullet.
+     */
     private double x;
+    /**
+     * y coordinate of the Bullet
+     */
     private double y;
+    /**
+     * The movement into the x and y directions of the map.
+     */
     private final double velX, velY;
+    /**
+     * Width and height from the Bullet.
+     */
     public static int width = 40, height = 40;
+    /**
+     * The Entity that shot the bullet.
+     */
     public Entity parent;
+    /**
+     * The speed of the Bullet.
+     */
     public static final double VELOCITY = 10D;
-
+    /**
+     * The variable for the Image of the Bullet.
+     */
     public static Image bullet;
 
+    /**
+     * Tries to set the Image of the Bullet.
+     */
     static {
         try {
             bullet = ImageIO.read(new File("rsc/player/schuss_player.png"));
@@ -39,7 +62,6 @@ public class Bullets {
      * @param velX   the x coordinate of the target.
      * @param velY   the y coordinate of the target.
      */
-
     public Bullets(Entity parent, double x, double y, double velX, double velY) {
         this.parent = parent;
         this.x = x;
@@ -48,11 +70,26 @@ public class Bullets {
         this.velY = velY;
     }
 
-
+    /**
+     * Draws the Image of the Bullet by its x and y coordination with their width and height.
+     *
+     * @param g gets the object that draws the Image.
+     */
     public void draw(Graphics2D g) {
         g.drawImage(bullet, (int) x, (int) y, width, height, null);
     }
 
+    /**
+     * Updates the Bullet.
+     * <p>
+     * Adds the velX and VelY values to the x and y coordinates.
+     * <p>
+     * If the Bullets x or y value gets higher or lower than the approximate coordinates of the wall, the Bullet will disappear.
+     * <p>
+     * Next it sets the hitbox for the Bullet with a rectangle having the x,y,width and height vaues.
+     * <p>
+     * At last the method looks for every existing Bullet if its intersecting the hitbox from another entity that is not the parent, calls the hit method, if its true and removes the Bullet after that.
+     */
     public void update() {
         x += velX;
         y += velY;

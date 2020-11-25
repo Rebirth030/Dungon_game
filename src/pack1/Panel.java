@@ -1,10 +1,7 @@
 package pack1;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Panel extends JPanel {
 
@@ -40,7 +37,7 @@ public class Panel extends JPanel {
         if (Game.player.livePoints >= 0)
             g.drawImage(InitSpriteAnimation.healthImages[(int) Game.constrain(Game.player.livePoints, 0, 6)], -(int) offX, -(int) offY, null);
         if (!Game.player.alive) {
-            g.drawImage(InitSpriteAnimation.GameOver, -(int) offX, -(int) offY, getWidth(), getHeight(), null);
+            g.drawImage(InitSpriteAnimation.gameOver, -(int) offX, -(int) offY, getWidth(), getHeight(), null);
         }
 
         g.fillRect(Entity.wall2.x,Entity.wall2.y, Entity.wall2.width, Entity.wall2.height);

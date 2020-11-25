@@ -11,24 +11,71 @@ import java.util.ArrayList;
  * * @version 1.5
  */
 public abstract class Entity {
-
+    /**
+     * variables for the movement in x and y direction, acceleration for the x and y direction and the x and y coordinates.
+     */
     protected double velX, velY, accX, accY, x, y;
+    /**
+     * The variable for the speed of the Entity
+     */
     protected int speed = 3;
+    /**
+     * The standard width of the entities.
+     */
     protected int width = 100;
+    /**
+     * The standard height of the entities.
+     */
     protected int height = 175;
+    /**
+     * Variables for moving and walls for the player and the other entities.
+     */
     protected boolean moveUp = false, moveDown = false, moveRight = false, moveLeft = false, wallAbove = false, wallUnder = false, wallLeft = false, wallRight = false, moveToPlayer = false, moveBothAwayFromPlayer = false, moveYAwayFromPlayer = false, moveXAwayFromPlayer = false;
+    /**
+     * The variable if the entity is alive.
+     */
     protected boolean alive;
+    /**
+     * The variable for the life points the entities have.
+     */
     protected int livePoints;
+    /**
+     * The spriteAnimation object that animates the entity.
+     */
     protected SpriteAnimation spriteAnimation;
 
+    /**
+     * The rectangle for the first wall to add a hitbox.
+     */
     protected static final Rectangle wall1 = new Rectangle(0, 0, Map.mapWidth, 100);
+    /**
+     * The rectangle for the second wall to add a hitbox.
+     */
     protected static final Rectangle wall2 = new Rectangle(0, Map.mapHeight - 80, Map.mapWidth, 100);
+    /**
+     * The rectangle for the third wall to add a hitbox.
+     */
     protected static final Rectangle wall3 = new Rectangle(0, 0, 35, Map.mapHeight);
+    /**
+     * The rectangle for the forth wall to add a hitbox.
+     */
     protected static final Rectangle wall4 = new Rectangle(Map.mapWidth - 155, 0, Map.mapWidth, Map.mapHeight / 2 - 200);
+    /**
+     * The rectangle for the fifth wall to add a hitbox.
+     */
     protected static final Rectangle wall5 = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 + 180, Map.mapWidth, Map.mapHeight / 2 - 200);
+    /**
+     * The rectangle for the exit to add a hitbox.
+     */
     protected static final Rectangle exit = new Rectangle(Map.mapWidth - 155, Map.mapHeight / 2 - 200, 500, 380);
 
+    /**
+     * The ArrayList stores the entities that are alive.
+     */
     protected static ArrayList<Entity> entities = new ArrayList<>();
+    /**
+     * The ArrayList stores the Bullets that are in the game.
+     */
     protected ArrayList<Bullets> bullets = new ArrayList<>();
 
     /**

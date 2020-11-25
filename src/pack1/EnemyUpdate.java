@@ -9,6 +9,9 @@ package pack1;
  * * @version 1.5
  */
 public class EnemyUpdate implements Runnable {
+    /**
+     * Counts the waves that gets created.
+     */
     static int waveCounter = 0;
 
     /**
