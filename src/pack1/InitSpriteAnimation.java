@@ -49,7 +49,7 @@ public class InitSpriteAnimation {
 
         for (int direction = 0; direction < directions.length; direction++) {
             for (int i = 1; i <= imageArrays[0].length; i++) {
-                imageArrays[direction][i - 1] = ImageIO.read(new File("rsc/player/" + directions[direction] + i + ".png"));
+                imageArrays[direction][i - 1] = ImageIO.read(InitSpriteAnimation.class.getResource("/player/" + directions[direction] + i + ".png"));
             }
         }
 
@@ -67,7 +67,7 @@ public class InitSpriteAnimation {
                 imageArrays[10],
                 imageArrays[11]
         );
-        gameOver = ImageIO.read(new File("rsc/GameOver.png"));
+        gameOver = ImageIO.read(InitSpriteAnimation.class.getResource("/GameOver.png"));
     }
 
     /**
@@ -84,9 +84,9 @@ public class InitSpriteAnimation {
         Image[] imageArray = new Image[21];
 
         for (int i = 1; i <= imageArray.length; i++) {
-            imageArray[i - 1] = ImageIO.read(new File("rsc/enemy1/Enemy_first" + i + ".png"));
+            imageArray[i - 1] = ImageIO.read(InitSpriteAnimation.class.getResource("/enemy1/Enemy_first" + i + ".png"));
         }
-        Image[] imageBoss = {ImageIO.read(new File("rsc/Enemy_Boss1.png"))};
+        Image[] imageBoss = {ImageIO.read(InitSpriteAnimation.class.getResource("/Enemy_Boss1.png"))};
 
         SpriteAnimation.enemyAnimation = new SpriteAnimation(
                 imageArray,
@@ -115,7 +115,7 @@ public class InitSpriteAnimation {
             initPlayerAnimation();
             initEnemyAnimation();
             initHealthAnimation();
-            icon = ImageIO.read(new File("rsc/Icon.png"));
+            icon = ImageIO.read(InitSpriteAnimation.class.getResource("/Icon.png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Image Error");
@@ -131,7 +131,7 @@ public class InitSpriteAnimation {
     private static void initHealthAnimation() throws IOException {
         int k = 0;
         for (int i = 7; i >= 1; i--) {
-            healthImages[k] = ImageIO.read(new File("rsc/player/lifePoints" + i + ".png"));
+            healthImages[k] = ImageIO.read(InitSpriteAnimation.class.getResource("/player/lifePoints" + i + ".png"));
             k++;
         }
 
@@ -146,3 +146,4 @@ public class InitSpriteAnimation {
         return icon;
     }
 }
+

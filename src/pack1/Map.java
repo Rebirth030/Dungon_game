@@ -33,9 +33,9 @@ public class Map {
     static void createMap() {
         try {
             level = new Image[]{
-                    ImageIO.read(new File("rsc/dungonBackground.png")),
-                    ImageIO.read(new File("rsc/Dungon background2.png")),
-                    ImageIO.read(new File("rsc/Dungon background3.png"))
+                    ImageIO.read(Map.class.getResource("/dungonBackground.png")),
+                    ImageIO.read(Map.class.getResource("/Dungon background2.png")),
+                    ImageIO.read(Map.class.getResource("/Dungon background3.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();

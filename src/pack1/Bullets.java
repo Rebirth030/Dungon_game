@@ -43,7 +43,7 @@ public class Bullets {
 
     static {
         try {
-            bullet = ImageIO.read(new File("rsc/player/schuss_player.png"));
+            bullet = ImageIO.read(Bullets.class.getResource("/player/schuss_player.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
