@@ -43,13 +43,6 @@ public class Map {
 
     }
 
-    static void nextLevel() {
-        levelCounter++;
-        PlayerOne.x = 35;
-        PlayerOne.y = 966;
-        EnemyUpdate.resetWaveCounter();
-    }
-
     /**
      * Gets the Image of the current Map.
      *
