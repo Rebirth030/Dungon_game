@@ -146,10 +146,7 @@ public class PlayerOne extends Entity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Map.levelCounter++;
-            x = 35;
-            y = 966;
-            EnemyUpdate.resetWaveCounter();
+            Map.nextLevel();
             //boss = new EnemyBoss(Game.getRandomNumber() * 3840, Game.getRandomNumber() * 2160);
 
         }

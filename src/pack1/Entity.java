@@ -190,7 +190,7 @@ public abstract class Entity {
 
         collide();
 
-        x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 35, Map.mapWidth - 155);
+        x = Game.constrain(x + ((velX != 0 && velY != 0) ? velX / Math.sqrt(2) : velX), 35, Map.mapWidth - 250);
         y = Game.constrain(y + ((velX != 0 && velY != 0) ? velY / Math.sqrt(2) : velY), 100, Map.mapHeight - 80);
 
     }
