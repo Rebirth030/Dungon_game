@@ -14,7 +14,13 @@ public abstract class Entity {
     /**
      * variables for the movement in x and y direction, acceleration for the x and y direction and the x and y coordinates.
      */
-    protected double velX, velY, accX, accY, x, y;
+    protected double velX;
+    protected double velY;
+    protected double accX;
+    protected double accY;
+
+    protected double x;
+    protected double y;
     /**
      * The variable for the speed of the Entity
      */
@@ -237,6 +243,10 @@ public abstract class Entity {
         return x;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
     /**
      * Passes the y value.
      *
@@ -244,6 +254,10 @@ public abstract class Entity {
      */
     public double getY() {
         return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     /**

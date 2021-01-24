@@ -43,6 +43,12 @@ public class Map {
 
     }
 
+    static void nextLevel() {
+        Map.levelCounter++;
+        Game.player.setX(35);
+        Game.player.setY(966);
+    }
+
     /**
      * Gets the Image of the current Map.
      *

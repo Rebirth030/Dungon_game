@@ -47,9 +47,9 @@ public class KeyHandler implements KeyListener {
             Game.player.moveLeft = true;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_P) activatedCheats = true;
+        if (e.getKeyCode() == KeyEvent.VK_P) EnemyUpdate.waveCounter = 4;
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
-        if (e.getKeyCode() == KeyEvent.VK_E && activatedCheats) Game.player.livePoints = 6;
+        if (e.getKeyCode() == KeyEvent.VK_E ) Game.player.livePoints = 6;
 
 
     }
